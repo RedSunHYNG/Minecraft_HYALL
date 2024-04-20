@@ -1,0 +1,91 @@
+/
+1.12.2
+/kill @e[type=!Player]
+/kill @e[type=!Player,type=!skeleton_horse,rm=0,r=300,type=!zombie_horse,type=!armor_stand,type=!donkey,type=!mule,type=!pig,type=!sheep,type=!cow,type=!chicken,type=!squid,type=!wolf,type=!mooshroom,type=!snowman,type=!ocelot,type=!villager_golem,type=!horse,type=!rabbit,type=!polar_bear,type=!llama,type=!parrot,type=!villager,type=!boat,type=!minecart,type=!commandblock_minecart,type=!chest_minecart,type=!furnace_minecart,type=!hopper_minecart,type=!spawner_minecart,type=!item,type=!xp_orb,type=!area_effect_cloud,type=!egg,type=!leash_knot,type=!painting,type=!arrow,type=!snowball,type=!ender_pearl,type=!eye_of_ender_signal,type=!potion,type=!xp_bottle,type=!item_frame,type=!falling_block,type=!fireworks_rocket,type=!spectral_arrow,type=!llama_spit]
+/kill @e[type=!skeleton_horse,rm=0,r=300,type=!zombie_horse,type=!armor_stand,type=!donkey,type=!mule,type=!pig,type=!sheep,type=!cow,type=!chicken,type=!squid,type=!wolf,type=!mooshroom,type=!snowman,type=!ocelot,type=!villager_golem,type=!horse,type=!rabbit,type=!polar_bear,type=!llama,type=!parrot,type=!villager,type=!boat,type=!minecart,type=!commandblock_minecart,type=!chest_minecart,type=!furnace_minecart,type=!hopper_minecart,type=!spawner_minecart,type=!item,type=!xp_orb,type=!area_effect_cloud,type=!egg,type=!leash_knot,type=!painting,type=!arrow,type=!snowball,type=!ender_pearl,type=!eye_of_ender_signal,type=!potion,type=!xp_bottle,type=!item_frame,type=!falling_block,type=!fireworks_rocket,type=!spectral_arrow,type=!llama_spit]
+/execute @e[type=creeper,type=enderman,type=tnt] ~ ~ ~ say 最棒的指令生成器: https://www.mcmod.cn/tools/cbcreator/
+/execute @e[type=creeper,r=300] ~ ~ ~ kill @s
+/effect @a[m=adventure] 18 10 254 true
+
+scoreboard players set @p op 5
+
+scoreboard objectives add op dummy
+/gamerule commandBlockOutput false
+gamerule keepInventory true
+/gamemode adventure @a[distance=..300,scores={dead=0}]
+/gamemode adventure @a[distance=300..310,scores={dead=0}]
+gamemode adventure @a[r=300,score_op=0,m=survival]
+/gamemode 、
+/fill ~10 ~ ~10 ~-10 ~ ~-10 air
+/fill ~10 ~ ~10 ~-10 ~ ~-10 minecraft:dirt
+/effect 红阳 
+/effect 红阳 minecraft:night_vision 9999
+
+
+/gamemode adventure @a[r=300,m=survival]
+/gamemode survival @a[rm=300,r=310,m=adventure]
+
+gamemode survival @a[m=adventure,score_op=-101,score_op_min=-101]
+
+scoreboard players set @a[m=adventure,score_op=-1,score_op_min=-100] 0
+scoreboard players set @a[m=survival,score_op=0,score_op_min=0] 数字
+scoreboard players set @a[m=survival,score_op=0,score_op_min=0] 数字
+gamerule keepInventory true
+gamerule commandBlockOutput false
+
+
+163 78 259
+
+3163 259
+163 3259 
+-2837 259
+163 -2741
+
+execute @a[r=3] ~ ~ ~ spreadplayers 3163 259 100 1000 false @p
+execute @a[r=3] ~ ~ ~ spreadplayers 163 3259 100 1000 false @p
+execute @a[r=3] ~ ~ ~ spreadplayers -2137 259 100 1000 false @p
+execute @a[r=3] ~ ~ ~ spreadplayers 163 -2741 100 1000 false @p
+
+
+/summon minecraft:armor_stand ~ ~1 ~ {Tags:["111"],ShowArms:1,Rotation:[0f],Pose:{Head:[0f,0f,0f],Body:[0f,0f,0f],LeftArm:[0f,0f,0f],RightArm:[0f,0f,0f],LeftLeg:[0f,0f,0f],RightLeg:[0f,0f,0f]}}
+
+execute @e[tag=111] ~ ~ ~ execute @e[type=enderman,r=300] ~ ~ ~ kill @s
+execute @e[tag=111] ~ ~ ~ execute @e[type=tnt,r=300] ~ ~ ~ kill @s
+
+
+/gamemode adventure @a[r=300,m=survival,score_op=0]
+/gamemode survival @a[rm=300,r=310,m=adventure,score_op=0]
+
+
+
+领地命令租组；(需建立在主城600米外的位置）
+scoreboard players set 特定名单 op -数字
+execute @e[tag=数字] ~ ~ ~ execute  @a[r=数值,m=survival,score_op=-数字+1] ~ ~ ~ gamemode adventure
+execute @e[tag=数字] ~ ~ ~ execute @a[r=数值,m=survival,score_op_min=-数字-1,score_op=0] ~ ~ ~ gamemode adventure
+execute @e[tag=数字] ~ ~ ~ execute @a[r=数值,rm=数值+10,m=adventure] ~ ~ ~ gamemode survival
+
+300米内，强制为冒险模式，防止主城被破坏。由于1.12.2指令缘故，只禁止了300米内的苦力怕 末影人 tnt，请不要搞破坏哦，开启了死亡不掉落和命令不输出的。300米内有瞬间回复，所以不要担心哦。主城4面边境有随机传送装置，靠近3米自动传送。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

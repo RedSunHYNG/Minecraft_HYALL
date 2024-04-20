@@ -1,0 +1,536 @@
+弩；
+调戏射击/说明书   ；0
+永恒封禁/封禁解除
+虚空吞噬/虚体化身
+怪物大军/创世权能·生存化（附近范围内，包括自己）
+永暗囚牢/死神抗性
+天雷一击/雷林召唤
+传送锚点/开启传送   ！
+天坠/创世权能·创造化（单自己）
+爆破/核爆
+行动封锁/行动解除
+
+
+
+
+镰刀；（效率）
+
+夺魂/赐死；所有除拿着zdy_op的人kill    
+开启不死之声      q；关闭不死之身；开启关闭不死模式
+丢垃圾:将人随机扩散掉    q；召集；所有实体tp过来
+掘地；连锁挖矿        Q；暴力填充；
+死神幽灵化             Q杀戮光环:一靠近全死亡   （积分）
+
+
+雪球；
+
+雷禁         q；雷禁解除
+龙骨炮·寂灭    q；   箭体删除
+龙骨炮:熔岩(火焰粒子):生成岩浆  q:火之舞
+照明:生成掉落的萤石   q；蛋白质抗性；清楚所有药水效果
+ 雷雨:生成延时爆炸的tnt,同时改为下雨  q:诱爆；所有实体生成tnt
+ 行动锁定:给予缓慢max   q:极药狂欢；最近的人头上生成药水
+
+
+被动；
+
+
+归位模块；
+防q键错误:延时间自动清空为0
+防触发错误；自动记为0
+
+防tp卡死
+防破坏窃视装置
+
+书籍
+
+前面使用当前物品触发；后项按q触发
+弩；
+调戏射击/说明  ；未有任何能力/给于一本说明书
+永恒封禁/封禁解除；将一直杀死那个人/解除所有一直被杀死的人
+虚空吞噬/虚体化身；清除那人的背包/将靠近的箭全部删除
+怪物大军/创世权能·生存化      ；生成有所有敌对方面的刷怪笼/将附近的人包括自己改成生存
+永暗囚牢/死神抗性  ；生成基岩小屋/给予自己抗性5 1000s
+天雷一击/雷林召唤   ；生成能产生雷电的箭/召唤出雷林（多束雷电）
+传送锚点/开启传送  ；射出一种能传送到那里的箭/进行传送 
+天坠/创世权能·创造化（单自己）；普通kill击杀/将自己改为创造
+爆破/核爆   ；生成能爆炸的箭/在自己位置生成一个核弹
+行动封锁/行动解锁；射出一个能将附近实体tp过来的盔甲架/杀死行动封锁里的盔甲架
+放烟花·系统重置；发射烟花火箭/重置系统设定
+镰刀；
+调试攻击·瞬移；无/向看向方向瞬移
+夺魂·赐死；普通kill击/杀死所有除拿着zdy_op的人   
+龙息·天雷爆破  ；生成龙息炸弹/生成超级苦力怕
+丢垃圾·召集；所有实体tp过来     ；将人随机丢弃/将所有人tp过来
+掘地·暴力填充；     将附近物体破坏为掉落物/将附近物体直接填充掉（大范围）
+死神幽灵化·杀戮光环      将自己变为观察者持续时间一段     一靠近全死亡   （积分）
+雪球；
+雷禁 ·雷禁解除       使击中的一直被雷劈/解除被雷劈的所有人
+龙骨炮·寂灭·箭体删除     寂灭消失掉路径方块/解除存在的雪球
+龙骨炮:熔岩·火之舞     沿路生成岩浆/在自己附近生成火焰
+照明:生成掉落的萤石·蛋白质抗性；      沿路生成岩浆/清楚所有药水效果
+雷雨·诱爆；            生成延时爆炸的tnt,同时改为下雨/  所有实体生成tnt
+行动锁定·极药狂欢给予实体缓慢max/最近的人头上生成含所有负面效果的药水
+
+
+/give @p minecraft:paper{Tags:["zdy_op","mode1"]}
+计分判断；
+
+/scoreboard objectives add zdmodeq3 minecraft.dropped:minecraft.snowball
+/scoreboard objectives add zdmodeq2 minecraft.picked_up:minecraft.diamond_pickaxe
+/scoreboard objectives add zdmodeq1 minecraft.picked_up:minecraft.crossbow
+/scoreboard objectives add zddeadtp deathCount
+/scoreboard objectives add zdrunmode trigger   当前类型模式
+/scoreboard objectives add zdtime001 dummy   发言记时
+/scoreboard objectives add zdtime002 dummy   Q键丢弃记时
+/scoreboard objectives add zdtime003 dummy   卡死保护
+/scoreboard objectives add zdrun003 minecraft.used:minecraft.snowball
+/scoreboard objectives add zdrun002 minecraft.used:minecraft.diamond_pickaxe
+/scoreboard objectives add zdrun001 minecraft.used:minecraft.crossbow
+/scoreboard objectives add zdtime004 dummy     防误触发装置1
+/scoreboard objectives add zdtime005 dummy     观察者记时
+/scoreboard objectives add zdbj01 dummy    标记目标
+
+
+
+命令方块；   大统一总端
+
+gamerule commandBlockOutput false
+/gamerule showDeathMessages false
+/gamerule sendCommandFeedback false
+
+激发系统（蝙蝠）
+execute as @e[tag=zdbj] at @s unless entity @a[distance=..5] run tp @e[distance=..5,tag=zdbj] ~ -100 ~
+
+execute as @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=1..3}] at @s unless entity @e[distance=..1,tag=zdbj] run summon minecraft:bat ~ ~1 ~ {Tags:["zdbj"],Silent:1b,NoAI:1b,ActiveEffects:[{Id:14,Amplifier:255,Duration:19999980,ShowParticles:0b}]}
+
+execute as @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=5}] at @s unless entity @e[distance=..1,tag=zdbj] run summon minecraft:bat ~ ~1 ~ {Tags:["zdbj"],Silent:1b,NoAI:1b,ActiveEffects:[{Id:14,Amplifier:255,Duration:19999980,ShowParticles:0b}]}
+
+
+
+
+激发设置；
+
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=1,zdrun001=1..}] run tag @e[distance=..2,type=minecraft:arrow] add runmode_1
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=2,zdrun001=1..}] run tag @e[distance=..2,type=minecraft:arrow] add runmode_2
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=3,zdrun001=1..}] run tag @e[distance=..2,type=minecraft:arrow] add runmode_3
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=4,zdrun001=1..}] run tag @e[distance=..2,type=minecraft:arrow] add runmode_4
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=5,zdrun001=1..}] run tag @e[distance=..2,type=minecraft:arrow] add runmode_5
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=6,zdrun001=1..}] run tag @e[distance=..2,type=minecraft:arrow] add runmode_6
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=7,zdrun001=1..}] run tag @e[distance=..2,type=minecraft:arrow] add runmode_7
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=8,zdrun001=1..}] run tag @e[distance=..2,type=minecraft:arrow] add runmode_8
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=9,zdrun001=1..}] run tag @e[distance=..2,type=minecraft:arrow] add runmode_9
+
+/scoreboard players set @a zdrun001 0
+
+
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode3"]}}},scores={zdrunmode=1,zdrun003=1..}] run tag @e[distance=..2,type=minecraft:snowball] add runmode_1
+/scoreboard players set @a zdrun003 0
+
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode3"]}}},scores={zdrunmode=2,zdrun003=1..}] run tag @e[distance=..2,type=minecraft:snowball] add runmode_2
+/say 一切都将回归于虚无。
+/scoreboard players set @a zdrun003 0
+
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode3"]}}},scores={zdrunmode=3,zdrun003=1..}] run tag @e[distance=..2,type=minecraft:snowball] add runmode_3
+/scoreboard players set @a zdrun003 0
+
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode3"]}}},scores={zdrunmode=4,zdrun003=1..}] run tag @e[distance=..2,type=minecraft:snowball] add runmode_4
+/scoreboard players set @a zdrun003 0
+
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["mode3"]}}},scores={zdrunmode=5,zdrun003=1..}] run tag @e[distance=..2,type=minecraft:snowball] add runmode_5
+/weather thunder
+/say 上帝向人间撒下了tnt
+/scoreboard players set @a zdrun003 0
+
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode3"]}}},scores={zdrunmode=6,zdrun003=1..}] run tag @e[distance=..2,type=minecraft:snowball] add runmode_6
+/scoreboard players set @a zdrun003 0
+
+
+replaceitem entity @a[nbt={SelectedItem:{tag:{Tags:["mode3"]}}}] weapon.mainhand minecraft:snowball{Enchantments:[{id:"minecraft:knockback",lvl:100}],Tags:["zdy_op","mode3"],display:{Name:"[{\"text\":\"总端源\",\"color\":\"gray\",\"bold\":true}]",Lore:["{\"text\":\"千变万化·雪\",\"color\":\"gold\"}","{\"text\":\"按F切换万化状态\",\"color\":\"red\"}","{\"text\":\"按Q释放当前模式第一技能\",\"color\":\"green\"}","{\"text\":\"朝天上切换物品打开弹药面板\",\"color\":\"aqua\"}"]}} 2
+
+
+replaceitem entity @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}}] weapon.mainhand minecraft:crossbow{Tags:["zdy_op","mode1"],Charged:1,ChargedProjectiles:[{Count:1b,id:"minecraft:arrow"}],display:{Name:"[{\"text\":\"总端源\",\"color\":\"gray\",\"bold\":true}]",Lore:["{\"text\":\"幻影神弩·9029\",\"color\":\"gold\"}","{\"text\":\"按F切换万化状态\",\"color\":\"red\"}","{\"text\":\"按Q释放当前模式第一技能\",\"color\":\"green\"}","{\"text\":\"朝天上切换物品打开弹药面板\",\"color\":\"aqua\"}"]}}
+
+
+类型切换；
+
+
+3连锁
+replaceitem entity @a[nbt={Inventory:[{tag:{Tags:["mode3"]},Slot:-106b}]}] weapon.mainhand minecraft:paper{Tags:["zdy_op","mode1"]}
+
+replaceitem entity @a[nbt={Inventory:[{tag:{Tags:["mode1"]},Slot:-106b}]}] weapon.mainhand minecraft:diamond_pickaxe{HideFlags:1,Tags:["zdy_op","mode2"],Enchantments:[{id:"minecraft:sharpness",lvl:2147483647},{id:"minecraft:knockback",lvl:2147483647},{id:"minecraft:efficiency",lvl:5}],display:{Name:"[{\"text\":\"总端源\",\"color\":\"gray\",\"bold\":true}]",Lore:["{\"text\":\"死神双镰·him\",\"color\":\"gold\"}","{\"text\":\"按F切换万化状态\",\"color\":\"red\"}","{\"text\":\"按Q释放当前模式第一技能\",\"color\":\"green\"}","{\"text\":\"朝天上切换物品打开弹药面板\",\"color\":\"aqua\"}"]},Unbreakable:1b}
+
+replaceitem entity @a[nbt={Inventory:[{tag:{Tags:["mode2"]},Slot:-106b}]}] weapon.mainhand minecraft:paper{Tags:["zdy_op","mode3"]}
+
+/replaceitem entity @a[nbt={Inventory:[{tag:{Tags:["zdy_op"]},Slot:-106b}]}] weapon.offhand minecraft:air
+
+----------------------------------------------
+
+scoreboard players set @a[scores={zdbj01=2..}] zdbj01 0
+scoreboard players set @a[scores={zdbj01=..-2}] zdbj01 0
+
+/scoreboard players enable @a[nbt={SelectedItem:{tag:{Tags:["zdy_op"]}}}] zdrunmode
+
+effect give @e[tag=zdbzw] minecraft:invisibility 30 0 true
+/effect give @a[nbt={SelectedItem:{tag:{Tags:["zdy_op"]}}}] minecraft:night_vision 60 0
+
+
+execute at @e[tag=zdldbj] run summon minecraft:lightning_bolt ~ ~ ~
+
+
+
+execute at @e[type=minecraft:snowball,tag=runmode_1] run tag @e[nbt=!{SelectedItem:{tag:{Tags:["mode3"]}}},tag=!runmode_1,distance=..3] add zdldbj
+execute at @e[type=minecraft:snowball,tag=runmode_2] run fill ~-3 ~-3 ~-3 ~3 ~3 ~3 air
+execute at @e[type=minecraft:snowball,tag=runmode_3] run summon minecraft:falling_block ~ ~1 ~ {BlockState:{Name:"minecraft:lava"},Time:1}
+execute at @e[type=minecraft:snowball,tag=runmode_4] run summon minecraft:falling_block ~ ~-1 ~ {BlockState:{Name:"minecraft:glowstone"},Time:1}
+execute at @e[type=minecraft:snowball,tag=runmode_5] run summon tnt ~ ~-1 ~ {Fuse:100}
+execute at @e[type=minecraft:snowball,tag=runmode_6] run effect give @a[distance=..4,nbt=!{SelectedItem:{tag:{Tags:["mode3"]}}}] minecraft:slowness 999999 254
+
+
+Q键技能组
+
+scoreboard players add @a[scores={zdtime002=..9},nbt=!{SelectedItem:{tag:{Tags:["zdy_op"]}}}] zdtime002 1
+
+scoreboard players set @a[scores={zdtime002=10..},nbt={SelectedItem:{tag:{Tags:["zdy_op"]}}}] zdtime002 0
+
+execute at @a[scores={zdtime002=1..9},nbt=!{SelectedItem:{tag:{Tags:["zdy_op"]}}}] as @e[type=item,distance=..3,nbt={Item:{id:"minecraft:crossbow"}}] run data merge entity @s {PickupDelay:0s}
+
+execute at @a[scores={zdtime002=1..9},nbt=!{SelectedItem:{tag:{Tags:["zdy_op"]}}}] as @e[type=item,distance=..3,nbt={Item:{id:"minecraft:diamond_pickaxe"}}] run data merge entity @s {PickupDelay:0s}
+
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode3"]}}}] run kill @e[type=item,distance=..3,nbt={Item:{id:"minecraft:snowball"}}]
+
+
+
+防卡死系统组
+连锁组；(非开启？)红石块生成
+（
+/execute as @a[scores={zddeadtp=1..3,zdtime003=..100},nbt={SelectedItem:{tag:{Tags:["zdy_op"]}}}] at @s unless entity @e[distance=..1,tag=zdcsmd] run summon minecraft:armor_stand ~ ~1 ~ {Tags:["zdcsmd"],Invulnerable:1b,PersistenceRequired:1b,NoGravity:1b,Invisible:1,Rotation:[0f]}
+/execute at @e[tag=zdcsmd] run tp @a[scores={zddeadtp=1..3,zdtime003=..100},nbt={SelectedItem:{tag:{Tags:["zdy_op"]}}}] ~ ~ ~
+/execute at @a[scores={zddeadtp=1..}] run kill @e[tag=zdcsmd,distance=..3]
+
+）
+
+
+
+/execute as @a[scores={zddeadtp=1..3,zdtime003=..100},nbt={SelectedItem:{tag:{Tags:["zdy_op"]}}}] at @s unless entity @e[distance=..1,tag=zdcsmd] run summon minecraft:armor_stand ~ ~1 ~ {Tags:["zdcsmd"],Invulnerable:1b,PersistenceRequired:1b,NoGravity:1b,Invisible:1,Rotation:[0f]}
+/execute at @e[tag=zdcsmd] run tp @a[scores={zddeadtp=1..3,zdtime003=..100},nbt={SelectedItem:{tag:{Tags:["zdy_op"]}}}] ~ ~ ~
+/execute at @a[scores={zddeadtp=1..}] run kill @e[tag=zdcsmd,distance=..3]
+循环
+scoreboard players add @a[scores={zddeadtp=1..}] zdtime003 1
+scoreboard players set @a[scores={zdtime003=101..}] zddeadtp 0
+scoreboard players set @a[scores={zddeadtp=0}] zdtime003 0
+execute as @a[scores={zdtime003=101..}] run kill @e[tag=zdcsmd]
+
+
+发言系统；
+模式切换
+
+tellraw @a[x_rotation=-90,scores={zdtime001=0},nbt={SelectedItem:{tag:{Tags:["mode1"]}}}] [{"text":"模式转换"},{"text":"调试射击","color":"aqua","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set 0"}},{"text":" 永恒封禁","color":"aqua","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set 1"}},{"text":" 虚无吞噬","color":"aqua","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set 2"}},{"text":" 怪物大军","color":"aqua","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set 3"}},{"text":" 永暗囚牢","color":"red","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set 4"}},{"text":" 天雷一击","color":"green","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set 5"}},{"text":" 传送锚点","color":"aqua","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set 6"}},{"text":" 天坠","color":"green","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set 7"}},{"text":" 爆破","color":"red","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set 8"}},{"text":" 行动封禁","color":"red","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set 9"}},{"text":" 放烟花·系统管理","color":"red","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set -1"}}]
+
+
+tellraw @a[x_rotation=-90,scores={zdtime001=0},nbt={SelectedItem:{tag:{Tags:["mode2"]}}}] [{"text":"模式转换"},{"text":" 调试攻击","color":"aqua","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set 0"}},{"text":" 夺魂","color":"aqua","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set 1"}},{"text":" 不死之身","color":"aqua","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set 2"}},{"text":" 丢垃圾","color":"aqua","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set 3"}},{"text":" 掘地","color":"aqua","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set 4"}},{"text":" 死神幽灵化","color":"aqua","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set 5"}}]
+
+tellraw @a[x_rotation=-90,scores={zdtime001=0},nbt={SelectedItem:{tag:{Tags:["mode3"]}}}] [{"text":"模式转换"},{"text":" 雷禁","color":"aqua","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set 1"}},{"text":" 龙骨炮·寂灭","color":"aqua","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set 2"}},{"text":" 龙骨炮:熔岩","color":"aqua","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set 3"}},{"text":" 照明","color":"aqua","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set 4"}},{"text":" 雷雨","color":"red","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set 5"}},{"text":" 行动锁定","color":"red","clickEvent":{"action":"run_command","value":"/trigger zdrunmode set 6"}}]
+
+
+scoreboard players set @a[scores={zdtime001=0},nbt={SelectedItem:{tag:{Tags:["zdy_op"]}}}] zdtime001 1
+
+scoreboard players set @a[scores={zdtime001=1..},nbt=!{SelectedItem:{tag:{Tags:["zdy_op"]}}}] zdtime001 0
+
+
+调戏射击/说明   ；
+
+/tell @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=0,zdmodeq1=1..}] 前面使用当前物品触发；后项按q触发
+弩；
+调戏射击/说明  ；未有任何能力/给于一本说明书
+永恒封禁/封禁解除；将一直杀死那个人/解除所有一直被杀死的人
+虚空吞噬/虚体化身；清除那人的背包/将靠近的箭全部删除
+怪物大军/创世权能·生存化      ；生成有所有敌对方面的刷怪笼/将附近的人包括自己改成生存
+永暗囚牢/死神抗性  ；生成基岩小屋/给予自己抗性5 1000s
+天雷一击/雷林召唤   ；生成能产生雷电的箭/召唤出雷林（多束雷电）
+传送锚点/开启传送  ；射出一种能传送到那里的箭/进行传送 
+天坠/创世权能·创造化（单自己）；普通kill击杀/将自己改为创造
+爆破/核爆   ；生成能爆炸的箭/在自己位置生成一个核弹
+行动封锁/行动解锁；射出一个能将附近实体tp过来的盔甲架/杀死行动封锁里的盔甲架
+放烟花·系统重置；发射烟花火箭/重置系统设定
+镰刀；
+调试攻击·瞬移；无/向看向方向瞬移
+夺魂·赐死；普通kill击/杀死所有除拿着zdy_op的人   
+龙息·天雷爆破  ；生成龙息炸弹/生成超级苦力怕
+丢垃圾·召集；所有实体tp过来     ；将人随机丢弃/将所有人tp过来
+掘地·暴力填充；     将附近物体破坏为掉落物/将附近物体直接填充掉（大范围）
+死神幽灵化·杀戮光环      将自己变为观察者持续时间一段     一靠近全死亡   （积分）
+雪球；
+雷禁 ·雷禁解除       使击中的一直被雷劈/解除被雷劈的所有人
+龙骨炮·寂灭·箭体删除     寂灭消失掉路径方块/解除存在的雪球
+龙骨炮:熔岩·火之舞     沿路生成岩浆/在自己附近生成火焰
+照明:生成掉落的萤石·蛋白质抗性；      沿路生成岩浆/清楚所有药水效果
+雷雨·诱爆；            生成延时爆炸的tnt,同时改为下雨/  所有实体生成tnt
+行动锁定·极药狂欢给予实体缓慢max/最近的人头上生成含所有负面效果的药水
+scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=0,zdmodeq1=1..}] zdmodeq1 0
+
+
+永恒封禁
+
+/execute at @e[type=minecraft:arrow,tag=runmode_1] at @a[nbt=!{SelectedItem:{tag:{Tags:["mode1"]}}},distance=..3] run tag @a[nbt=!{SelectedItem:{tag:{Tags:["mode1"]}}},distance=..3,tag=!runmode_1] add bekiller
+execute at @e[type=minecraft:arrow,tag=runmode_1] at @a[nbt=!{SelectedItem:{tag:{Tags:["mode1"]}}},distance=..3] run say @a[tag=bekiller]被世界之神标记了。
+/execute at @a[nbt=!{SelectedItem:{tag:{Tags:["mode1"]}}}] as @e[type=minecraft:arrow,tag=runmode_1,distance=..3] run kill @s
+
+
+kill @e[tag=bekiller]
+
+封禁解除
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=1,zdmodeq1=1..}] run tag @a[tag=bekiller] remove bekiller
+scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=1,zdmodeq1=1..}] zdmodeq1 0
+
+
+虚空吞噬
+/execute at @e[type=minecraft:arrow,tag=runmode_2] at @a[nbt=!{SelectedItem:{tag:{Tags:["mode1"]}}},distance=..3] run clear @a[nbt=!{SelectedItem:{tag:{Tags:["mode1"]}}},distance=..3]
+/execute at @e[type=minecraft:arrow,tag=runmode_2] at @a[nbt=!{SelectedItem:{tag:{Tags:["mode1"]}}},distance=..3] run say @a[nbt=!{SelectedItem:{tag:{Tags:["mode1"]}}},distance=..3]遭到了虚空的洗劫。
+/execute at @a[nbt=!{SelectedItem:{tag:{Tags:["mode1"]}}}] as @e[type=minecraft:arrow,tag=runmode_2,distance=..3] run kill @s
+
+虚体化身
+/execute as @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=2,zdmodeq1=1..}] run scoreboard players add @s zdbj01 
+scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=2,zdmodeq1=1..}] zdmodeq1 0
+
+
+怪物大军
+/execute at @e[type=minecraft:arrow,tag=runmode_3] at @a[nbt=!{SelectedItem:{tag:{Tags:["mode1"]}}},distance=..3] run setblock ~ ~ ~ minecraft:spawner{SpawnData:{id:"minecraft:wither_skeleton"},SpawnPotentials:[{Weight:100,Entity:{id:"minecraft:wither_skeleton"}},{Weight:100,Entity:{id:"minecraft:ravager"}},{Weight:100,Entity:{id:"minecraft:vindicator"}},{Weight:100,Entity:{id:"minecraft:slime"}},{Weight:100,Entity:{id:"minecraft:witch"}},{Weight:100,Entity:{id:"minecraft:husk"}},{Weight:100,Entity:{id:"minecraft:illusioner"}},{Weight:100,Entity:{id:"minecraft:phantom"}},{Weight:100,Entity:{id:"minecraft:ghast"}},{Weight:100,Entity:{id:"minecraft:ravager"}},{Weight:100,Entity:{id:"minecraft:vex"}},{Weight:100,Entity:{id:"minecraft:ender_dragon"}},{Weight:100,Entity:{id:"minecraft:stray"}},{Weight:100,Entity:{id:"minecraft:shulker"}}]} 
+/time set night
+/execute at @e[type=minecraft:arrow,tag=runmode_3] run say @a[nbt=!{SelectedItem:{tag:{Tags:["mode1"]}}},distance=..3]感到了怪物爬上了脊背。
+/execute at @a[nbt=!{SelectedItem:{tag:{Tags:["mode1"]}}}] as @e[type=minecraft:arrow,tag=runmode_3,distance=..3] run kill @s
+
+创世权能·生存化
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=3,zdmodeq1=1..}] run gamemode survival @a
+scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=3,zdmodeq1=1..}] zdmodeq1 0
+
+永暗囚牢
+/execute at @e[type=minecraft:arrow,tag=runmode_4] at @a[nbt=!{SelectedItem:{tag:{Tags:["mode1"]}}},distance=..3] run fill ~-2 ~-2 ~-2 ~2 ~2 ~2 minecraft:bedrock hollow
+/execute at @e[type=minecraft:arrow,tag=runmode_4] at @a[nbt=!{SelectedItem:{tag:{Tags:["mode1"]}}},distance=..3] run say 恭喜@a[nbt=!{SelectedItem:{tag:{Tags:["mode1"]}}},distance=..3]获得了小黑屋一座。
+/execute at @a[nbt=!{SelectedItem:{tag:{Tags:["mode1"]}}}] as @e[type=minecraft:arrow,tag=runmode_4,distance=..3] run kill @s
+
+死神抗性
+/execute as @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=4,zdmodeq1=1..}] run effect give @s minecraft:resistance 1000 4 true
+scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=4,zdmodeq1=1..}] zdmodeq1 0
+
+天雷一击
+/execute at @e[type=minecraft:arrow,tag=runmode_5] as @e[tag=!runmode_5,nbt=!{SelectedItem:{tag:{Tags:["mode1"]}}},distance=..3] run say 遭到了天谴
+/execute at @e[type=minecraft:arrow,tag=runmode_5] at @e[tag=!runmode_5,nbt=!{SelectedItem:{tag:{Tags:["mode1"]}}},distance=..3] run summon minecraft:lightning_bolt ~ ~ ~
+/execute at @e[nbt=!{SelectedItem:{tag:{Tags:["mode1"]}}}] as @e[type=minecraft:arrow,tag=runmode_5,distance=..3] run kill @s
+
+雷林召唤
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=5,zdmodeq1=1..}] run summon minecraft:item ~ ~1 ~ {Item:{id:"minecraft:nether_star",Count:64b},Age:4800,PickupDelay:4800}
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=5,zdmodeq1=1..}] run summon minecraft:item ~ ~1 ~ {Item:{id:"minecraft:nether_star",Count:64b},Age:4800,PickupDelay:4800}
+/execute at @a run spreadplayers ~ ~ 1 15 false @e[distance=..2,type=item,nbt={Item:{id:"minecraft:nether_star"}}]
+/execute at @e[type=item,nbt={Item:{id:"minecraft:nether_star"}}] run summon minecraft:lightning_bolt ~ ~ ~
+/scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=5,zdmodeq1=1..}] zdmodeq1 0
+/say 天神降下了让一切都赎罪的雷罚
+
+
+传送锚点
+（无）
+
+开启传送
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=6,zdmodeq1=1..}] at @e[type=minecraft:arrow,tag=runmode_6,limit=1,sort=nearest] run tp @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=6,zdmodeq1=1..}] ~ ~ ~
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=6,zdmodeq1=1..}] as @e[type=minecraft:arrow,tag=runmode_6,limit=1,sort=nearest,nbt={inGround:1b}] run kill @s
+/scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=6,zdmodeq1=1..}] zdmodeq1 0
+
+天坠
+/execute at @e[type=minecraft:arrow,tag=runmode_7] as @e[tag=!runmode_7,nbt=!{SelectedItem:{tag:{Tags:["mode1"]}}},distance=..3] run kill @s
+/execute at @e[nbt=!{SelectedItem:{tag:{Tags:["mode1"]}}}] as @e[type=minecraft:arrow,tag=runmode_7,distance=..3] run kill @s
+
+/kill @e[type=minecraft:arrow,tag=runmode_7,nbt={inGround:1b}]
+
+创世权能·创造化
+
+/execute as @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=7,zdmodeq1=1..}] run gamemode creative @s
+/scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=7,zdmodeq1=1..}] zdmodeq1 0
+
+爆破
+
+/execute at @e[type=minecraft:arrow,tag=runmode_8,nbt={inGround:1b}] run summon tnt ~ ~ ~
+/kill @e[type=minecraft:arrow,tag=runmode_8]
+
+核爆
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=8,zdmodeq1=1..}] run summon minecraft:creeper ~ ~1 ~ {CustomName:"[{\"text\":\"苦力怕号核弹头\",\"color\":\"red\"}]",ignited:1b,ExplosionRadius:100,Fuse:0,Tags:["zdbzw"]}
+/say 让爆炸成为艺术。
+/scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=8,zdmodeq1=1..}] zdmodeq1 0
+
+
+行动封锁
+/execute at @e[type=minecraft:arrow,tag=runmode_9] as @a[nbt=!{SelectedItem:{tag:{Tags:["mode1"]}}},distance=..2] run summon minecraft:armor_stand ~ ~1 ~ {Tags:["zdtpfj"],Invulnerable:1b,Invisible:1,ShowArms:1}
+/execute at @e[tag=zdtpfj] run kill @e[type=minecraft:arrow,tag=runmode_9,distance=..3]
+
+/execute at @e[tag=zdtpfj] run tp @e[distance=..3] ~ ~ ~
+
+
+行动解除
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=9,zdmodeq1=1..}] run kill @e[tag=zdtpfj]
+/scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=9,zdmodeq1=1..}] zdmodeq1 0
+
+
+放烟花；
+（无）
+
+系统修复；
+
+
+
+/execute as @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=-1,zdmodeq1=1..}] run fill ~ ~4 ~ ~ ~15 ~ air
+
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=-1,zdmodeq1=1..}] run say 系统已重置
+/setblock ~ ~2 ~ minecraft:command_block[conditional=false,facing=up]{conditionMet:1b,auto:1b,CustomName:'{"text":"@"}',powered:0b,Command:"summon falling_block ~ ~1 ~ {Time:1,BlockState:{Name:redstone_block},Passengers:[{id:armor_stand,Health:0,Passengers:[{id:falling_block,Time:99,BlockState:{Name:activator_rail},Passengers:[{id:command_block_minecart,Command:'scoreboard objectives add zdmodeq3 minecraft.dropped:minecraft.snowball'},{id:command_block_minecart,Command:'scoreboard objectives add zdmodeq2 minecraft.picked_up:minecraft.diamond_pickaxe'},{id:command_block_minecart,Command:'scoreboard objectives add zdmodeq1 minecraft.picked_up:minecraft.crossbow'},{id:command_block_minecart,Command:'scoreboard objectives add zddeadtp deathCount'},{id:command_block_minecart,Command:'scoreboard objectives add zdrunmode trigger'},{id:command_block_minecart,Command:'scoreboard objectives add zdtime001 dummy'},{id:command_block_minecart,Command:'scoreboard objectives add zdtime002 dummy'},{id:command_block_minecart,Command:'scoreboard objectives add zdtime003 dummy'},{id:command_block_minecart,Command:'scoreboard objectives add zdtime004 dummy'},{id:command_block_minecart,Command:'scoreboard objectives add zdtime005 dummy'},{id:command_block_minecart,Command:'scoreboard objectives add zdrun003 minecraft.used:minecraft.snowball'},{id:command_block_minecart,Command:'scoreboard objectives add zdrun002 minecraft.used:minecraft.diamond_pickaxe'},{id:command_block_minecart,Command:'scoreboard objectives add zdrun001 minecraft.used:minecraft.crossbow'},{id:command_block_minecart,Command:'scoreboard objectives add zdbj01 dummy'},{id:command_block_minecart,Command:'gamerule showDeathMessages false'},{id:command_block_minecart,Command:'gamerule commandBlockOutput false'},{id:command_block_minecart,Command:'gamerule sendCommandFeedback false'},{id:command_block_minecart,Command:'scoreboard players set @a zdtime001 0'},{id:command_block_minecart,Command:'scoreboard players set @a zdtime002 0'},{id:command_block_minecart,Command:'scoreboard players set @a zdtime003 0'},{id:command_block_minecart,Command:'scoreboard players set @a zdtime004 0'},{id:command_block_minecart,Command:'scoreboard players set @a zdtime005 0'},{id:command_block_minecart,Command:'scoreboard players set @a zdbj01 0'},{id:command_block_minecart,Command:'setblock ~ ~1 ~ command_block{auto:1,Command:\"fill ~ ~ ~ ~ ~-3 ~ air\"}'},{id:command_block_minecart,Command:'kill @e[type=command_block_minecart,distance=..1]'}]}]}]}",SuccessCount:0,TrackOutput:0b,UpdateLastExecution:1b}
+/execute as @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=-1,zdmodeq1=1..}] run scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={zdrunmode=-1,zdmodeq1=1..}] zdmodeq1 0
+
+
+
+
+
+调试攻击
+
+（无）
+
+瞬移
+/execute as @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=0,zdmodeq2=1..}] at @s positioned ~ ~1 ~ run tp ^ ^ ^4
+/scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=0,zdmodeq2=1..}] zdmodeq2 0
+
+
+
+
+
+
+
+
+
+
+夺魂
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=1,zdrun002=1..}] run kill @e[distance=1..3]
+/scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=1,zdrun002=1..}] zdrun002 0
+
+赐死
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=1,zdmodeq2=1..}] run kill @e[distance=1..]
+/scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=1,zdmodeq2=1..}] zdmodeq2 0
+
+不死之身
+/execute as @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=2,zdrun002=1..}] run setblock -5 4 -99 minecraft:redstone_block
+/scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=2,zdrun002=1..}] zdrun002 0
+
+
+不死之身；
+
+/execute as @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=2,zdmodeq2=1..}] run setblock -5 4 -99 minecraft:air
+/scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=2,zdmodeq2=1..}] zdmodeq2 0
+
+
+丢垃圾
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=3,zdrun002=1..}] as @e[distance=1..5] run say 被当垃圾扔掉了
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=3,zdrun002=1..}] run spreadplayers ~ ~ 10 1000 false @e[distance=1..5]
+/scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=3,zdrun002=1..}] zdrun002 0
+
+召集
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=3,zdmodeq2=1..}] run tp @a[distance=1..] ~ ~ ~
+/scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=3,zdmodeq2=1..}] zdmodeq2 0
+
+掘地
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=4,zdrun002=1..}] run fill ~-3 ~-3 ~-3 ~3 ~3 ~3 air destroy
+/scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=4,zdrun002=1..}] zdrun002 0
+
+暴力填充
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=4,zdmodeq2=1..}] run fill ~-5 ~-5 ~-5 ~5 ~5 ~5 air
+/scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=4,zdmodeq2=1..}] zdmodeq2 0
+
+死神幽灵化
+/execute as @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=5,zdrun002=1..}] run scoreboard players set @s zdtime005 1
+/scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=5,zdrun002=1..}] zdrun002 0
+
+/execute as @a[scores={zdtime005=1..2}] run gamemode spectator @s
+/scoreboard players add @a[scores={zdtime005=1..99}] zdtime005 1
+
+/execute as @a[scores={zdtime005=100..}] run gamemode creative @s
+/scoreboard players set @a[scores={zdtime005=100..}] zdtime005 0
+
+杀戮光环
+/execute as @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=5,zdmodeq2=1..}] run scoreboard players remove @s zdbj01 1
+/scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode2"]}}},scores={zdrunmode=5,zdmodeq2=1..}] zdmodeq2 0
+
+/execute at @a[scores={zdbj01=-1}] at @e[distance=2..10] run particle minecraft:sweep_attack ~ ~ ~ 0 0 0 0.25 1 normal
+/execute at @a[scores={zdbj01=-1}] run say 一阵剑风袭过，@e[distance=2..10]被搅碎了。
+/execute at @a[scores={zdbj01=-1}] run kill @e[distance=2..10]
+
+雷禁 
+
+（无）
+
+雷禁解除
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["mode3"]}}},scores={zdrunmode=1,zdmodeq3=1..}] run tag @a remove zdldbj
+/scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode3"]}}},scores={zdrunmode=1,zdmodeq3=1..}] zdmodeq3 0
+
+龙骨炮·寂灭
+
+（无）
+
+球体删除
+
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["mode3"]}}},scores={zdrunmode=2,zdmodeq3=1..}] run kill @e[type=minecraft:snowball,tag=runmode_2]
+/scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode3"]}}},scores={zdrunmode=2,zdmodeq3=1..}] zdmodeq3 0
+
+
+龙骨炮·熔岩
+
+execute at @e[type=minecraft:snowball,tag=runmode_3] at @a[distance=..3,nbt=!{SelectedItem:{tag:{Tags:["mode3"]}}}] run say 像@a[distance=..3,nbt=!{SelectedItem:{tag:{Tags:["mode3"]}}}]这样的孩子就该在地狱里焚烧。
+execute at @a[nbt=!{SelectedItem:{tag:{Tags:["mode3"]}}}] as @e[distance=..3,type=minecraft:snowball,tag=runmode_3] run kill @s
+
+火之舞
+
+execute as @a[nbt={SelectedItem:{tag:{Tags:["mode3"]}}},scores={zdrunmode=3,zdmodeq3=1..}] at @a[nbt=!{SelectedItem:{tag:{Tags:["mode3"]}}},distance=..10] run fill ~-1 ~ ~-1 ~1 ~ ~1 minecraft:fire keep
+scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode3"]}}},scores={zdrunmode=3,zdmodeq3=1..}] zdmodeq3 0
+
+
+照明
+
+（无）
+
+蛋白质抗性
+
+execute as @a[nbt={SelectedItem:{tag:{Tags:["mode3"]}}},scores={zdrunmode=4,zdmodeq3=1..}] run effect clear @a
+scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode3"]}}},scores={zdrunmode=4,zdmodeq3=1..}] zdmodeq3 0
+
+雷雨
+
+（无）
+
+诱爆
+
+execute as @a[nbt={SelectedItem:{tag:{Tags:["mode3"]}}},scores={zdrunmode=5,zdmodeq3=1..}] at @a[nbt=!{SelectedItem:{tag:{Tags:["mode3"]}}}] run summon minecraft:tnt ~ ~2 ~
+scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode3"]}}},scores={zdrunmode=5,zdmodeq3=1..}] zdmodeq3 0
+
+行动锁定
+execute at @a[nbt=!{SelectedItem:{tag:{Tags:["mode3"]}}}] at @e[distance=..3,type=minecraft:snowball,tag=runmode_6] run say @a[distance=..3,nbt=!{SelectedItem:{tag:{Tags:["mode3"]}}}]肾虚了
+execute at @a[nbt=!{SelectedItem:{tag:{Tags:["mode3"]}}}] as @e[distance=..3,type=minecraft:snowball,tag=runmode_6] run kill @s
+
+极药狂欢
+execute as @a[nbt={SelectedItem:{tag:{Tags:["mode3"]}}},scores={zdrunmode=6,zdmodeq3=1..}] at @a[nbt=!{SelectedItem:{tag:{Tags:["mode3"]}}}] run summon minecraft:potion ~ ~1 ~ {Motion:[0.0,0.0,0.0],Item:{id:"minecraft:splash_potion",Count:1b,tag:{Potion:CBC,CustomPotionEffects:[{Id:2,Amplifier:9,Duration:20000},{Id:4,Amplifier:9,Duration:20000},{Id:9,Amplifier:9,Duration:20000},{Id:15,Amplifier:9,Duration:20000},{Id:17,Amplifier:9,Duration:20000},{Id:18,Amplifier:9,Duration:20000},{Id:19,Amplifier:9,Duration:20000},{Id:20,Amplifier:9,Duration:20000},{Id:27,Amplifier:9,Duration:20000},{Id:1,Amplifier:0,Duration:600},{Id:3,Amplifier:0,Duration:600},{Id:5,Amplifier:0,Duration:600},{Id:6,Amplifier:0,Duration:600},{Id:7,Amplifier:0,Duration:600},{Id:8,Amplifier:0,Duration:600},{Id:11,Amplifier:0,Duration:600},{Id:12,Amplifier:0,Duration:600},{Id:13,Amplifier:0,Duration:600},{Id:14,Amplifier:0,Duration:600},{Id:16,Amplifier:0,Duration:600},{Id:21,Amplifier:0,Duration:600},{Id:22,Amplifier:0,Duration:600},{Id:23,Amplifier:0,Duration:600},{Id:24,Amplifier:0,Duration:600},{Id:25,Amplifier:0,Duration:600},{Id:26,Amplifier:0,Duration:600},{Id:28,Amplifier:0,Duration:600},{Id:29,Amplifier:0,Duration:600},{Id:30,Amplifier:0,Duration:600}]}}}
+scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["mode3"]}}},scores={zdrunmode=6,zdmodeq3=1..}] zdmodeq3 0
+
+
+雷禁bug；将雪球自身也添加了；推测同类bug；持续kill   ok
+命令少添了一个【f切换  ok
+
+有几率捡不回来    ok
+杀戮光环 有未开启的命令    ok
+雪球丢弃会导致数量增多 ok
+
+
+烟花庆祝；火箭弩  ok
+
+添加模式；放烟花·系统修复 （同时解决重设积分有时候先后执行导致失效的问题）  重启设定；（技能项）  ok
+
+岩浆攻击的名字复数出现   ok
+
+按q释放剑气 
+按q释放箭雨 
+矢量反射
+
+
+
+

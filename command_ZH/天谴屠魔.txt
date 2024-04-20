@@ -1,0 +1,95 @@
+scoreboard objectives add tqtm_kill minecraft.used:minecraft.crossbow
+scoreboard objectives add hy_tm_kill dummy
+/gamerule commandBlockOutput false
+
+
+execute at @a[scores={hy_tm_kill=1}] if entity @a[distance=2..10] run gamerule showDeathMessages false
+execute at @a[scores={hy_tm_kill=1}] at @e[distance=2..10] run particle minecraft:sweep_attack ~ ~ ~ 0 0 0 0.25 1 normal
+execute at @a[scores={hy_tm_kill=1}] if entity @e[distance=2..10] run say 一阵剑风袭过，@e[distance=2..10]被搅碎了
+execute at @a[scores={hy_tm_kill=1}] run kill @e[distance=2..10]
+execute at @a[scores={hy_tm_kill=1}] unless entity @a[distance=2..10] run gamerule showDeathMessages true
+
+scoreboard players set @a[scores={hy_tm_kill=2..}] hy_tm_kill 0
+replaceitem entity @a[nbt={SelectedItem:{tag:{Tags:["hy_tm"]}}}] weapon.mainhand minecraft:crossbow{Charged:1,ChargedProjectiles:[{Count:1b,id:"minecraft:arrow"}],display:{Name:"[{\"text\":\"天谴屠魔\",\"color\":\"dark_red\"}]",Lore:["{\"text\":\"·F;???失去大部分力量？？？\",\"color\":\"dark_green\"}","{\"text\":\"·终焉总端源分身之一（弱化）\",\"color\":\"gold\"}","{\"text\":\"·挣脱创世神<零>的封印,遗落世间\",\"color\":\"aqua\"}"]},Tags:["hy_tm"],Unbreakable:1,HideFlags:1} 1
+
+
+scoreboard players add @a[nbt={Inventory:[{tag:{Tags:["hy_tm"]},Slot:-106b}]}] hy_tm_kill 1
+replaceitem entity @a[nbt={Inventory:[{tag:{Tags:["hy_tm"]},Slot:-106b}]}] weapon.mainhand minecraft:crossbow{Charged:1,ChargedProjectiles:[{Count:1b,id:"minecraft:arrow"}],display:{Name:"[{\"text\":\"天谴屠魔\",\"color\":\"dark_red\"}]",Lore:["{\"text\":\"·F;???失去大部分力量？？\",\"color\":\"dark_green\"}","{\"text\":\"·终焉总端源分身之一（弱化）\",\"color\":\"gold\"}","{\"text\":\"·挣脱创世神<零>的封印,遗落世间\",\"color\":\"aqua\"}"]},Tags:["hy_tm"],Unbreakable:1,HideFlags:1} 1
+replaceitem entity @a[nbt={Inventory:[{tag:{Tags:["hy_tm"]},Slot:-106b}]}] weapon.offhand minecraft:air
+
+
+give @p minecraft:crossbow{display:{Name:"[{\"text\":\"天谴屠魔\",\"color\":\"dark_red\"}]",Lore:["{\"text\":\"·F;???失去大部分力量？？\",\"color\":\"dark_green\"}","{\"text\":\"·终焉总端源分身之一（弱化）\",\"color\":\"gold\"}","{\"text\":\"·挣脱创世神<零>的封印,遗落世间\",\"color\":\"aqua\"}"]},Tags:["hy_tm"],Unbreakable:1,HideFlags:1} 1
+
+execute at @a[nbt={SelectedItem:{tag:{Tags:["hy_tm"]}}},scores={tqtm_kill=1}] run tag @e[type=minecraft:arrow,distance=..3] add tq_tm_bj
+scoreboard players set @a[scores={tqtm_kill=1..}] tqtm_kill 0
+
+execute at @e[tag=tq_tm_bj] if entity @e[nbt=!{SelectedItem:{tag:{Tags:["hy_tm"]}}},tag=!tq_tm_bj,distance=..3] run summon minecraft:lightning_bolt ~ ~ ~
+execute at @e[tag=tq_tm_bj] run kill @e[nbt=!{SelectedItem:{tag:{Tags:["hy_tm"]}}},tag=!tq_tm_bj,distance=..3,type=!minecraft:lightning_bolt]
+kill @e[type=minecraft:arrow,tag=tq_tm_bj,nbt={inGround:1b}]
+
+execute if entity @a[tag=!op_hy,distance=..30] run forceload add ~95 ~95 ~105 ~105
+execute if entity @a[tag=!op_hy,distance=..30] run clone ~ ~ ~3 ~-3 ~ ~-2 ~100 ~ ~100 replace
+execute if entity @a[tag=!op_hy,distance=..30] run fill ~ ~ ~4 ~-3 ~ ~-1 air
+
+/tellraw @p [{"text":"红阳","color":"aqua","obfuscated":true},{"text":"请以正规途径获取，支持红阳正版，装13封顶。99:2788846877","color":"white","obfuscated":false}]
+/gamerule commandBlockOutput false
+scoreboard objectives add tqtm_kill minecraft.used:minecraft.crossbow
+scoreboard objectives add hy_tm_kill dummy
+forceload add 201 -34 206 -40
+give @p minecraft:crossbow{display:{Name:"[{\\"text\\":\\"天谴屠魔\\",\\"color\\":\\"dark_red\\"}]",Lore:["{\\text\\":\\"·F;???失去大部分力量？？\\",\\"color\\":\\"dark_green\\"}","{\\"text\\":\\"·终焉总端源分身之一（弱化）\\",\\"color\\":\\"gold\\"}","{\\"text\\":\\"·挣脱创世神<零>的封印,遗落世间\\",\\"color\\":\\"aqua\\"}"]},Tags:["hy_tm"],Unbreakable:1,HideFlags:1} 1
+/setblock 202 4 -35 minecraft:repeating_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute at @e[tag=tq_tm_bj] if entity @e[nbt=!{SelectedItem:{tag:{Tags:[\\"hy_tm\\"]}}},tag=!tq_tm_bj,distance=..3] run summon minecraft:lightning_bolt ~ ~ ~"}
+/setblock 202 4 -36 minecraft:chain_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute at @e[tag=tq_tm_bj] run kill @e[nbt=!{SelectedItem:{tag:{Tags:[\\"hy_tm\\"]}}},tag=!tq_tm_bj,distance=..3,type=!minecraft:lightning_bolt]"}
+/setblock 202 4 -37 minecraft:chain_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"kill @e[type=minecraft:arrow,tag=tq_tm_bj,nbt={inGround:1b}]"}
+/setblock 203 4 -35 minecraft:repeating_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute at @a[scores={hy_tm_kill=1}] if entity @a[distance=2..10] run gamerule showDeathMessages false"}
+/setblock 203 4 -36 minecraft:chain_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute at @a[scores={hy_tm_kill=1}] at @e[distance=2..10] run particle minecraft:sweep_attack ~ ~ ~ 0 0 0 0.25 1 normal"}
+/setblock 203 4 -37 minecraft:chain_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute at @a[scores={hy_tm_kill=1}] if entity @e[distance=2..10] run say 一阵剑风袭过，@e[distance=2..10]被搅碎了"}
+/setblock 203 4 -38 minecraft:chain_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute at @a[scores={hy_tm_kill=1}] run kill @e[distance=2..10]"}
+/setblock 203 4 -39 minecraft:chain_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute at @a[scores={hy_tm_kill=1}] unless entity @a[distance=2..10] run gamerule showDeathMessages true"}
+/setblock 204 4 -35 minecraft:repeating_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"scoreboard players add @a[nbt={Inventory:[{tag:{Tags:[\\"hy_tm\\"]},Slot:-106b}]}] hy_tm_kill 1"}
+/setblock 204 4 -36 minecraft:chain_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"replaceitem entity @a[nbt={Inventory:[{tag:{Tags:[\\"hy_tm\\"]},Slot:-106b}]}] weapon.mainhand minecraft:crossbow{Charged:1,ChargedProjectiles:[{Count:1b,id:\\"minecraft:arrow\\"}],display:{Name:\\"[{\\\\"text\\\\":\\\\"天谴屠魔\\\\",\\\\"color\\\\":\\\\"dark_red\\\\"}]\\",Lore:[\\"{\\\\"text\\\\":\\\\"·F;???失去大部分力量？？\\\\",\\\\"color\\\\":\\\\"dark_green\\\\"}\\",\\"{\\\\"text\\\\":\\\\"·终焉总端源分身之一（弱化）\\\\",\\\\"color\\\\":\\\\"gold\\\\"}\\",\\"{\\\\"text\\\\":\\\\"·挣脱创世神<零>的封印,遗落世间\\\\",\\\\"color\\\\":\\\\"aqua\\\\"}\\"]},Tags:[\\"hy_tm\\"],Unbreakable:1,HideFlags:1} 1"}
+/setblock 204 4 -37 minecraft:chain_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"replaceitem entity @a[nbt={Inventory:[{tag:{Tags:[\\"hy_tm\\"]},Slot:-106b}]}] weapon.offhand minecraft:air"}
+/setblock 204 4 -38 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"replaceitem entity @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_tm\\"]}}}] weapon.mainhand minecraft:crossbow{Charged:1,ChargedProjectiles:[{Count:1b,id:\\"minecraft:arrow\\"}],display:{Name:\\"[{\\\\"text\\\\":\\\\"天谴屠魔\\\\",\\\\"color\\\\":\\\\"dark_red\\\\"}]\\",Lore:[\\"{\\\\"text\\\\":\\\\"·F;???失去大部分力量？？？\\\\",\\\\"color\\\\":\\\\"dark_green\\\\"}\\",\\"{\\\\"text\\\\":\\\\"·终焉总端源分身之一（弱化）\\\\",\\\\"color\\\\":\\\\"gold\\\\"}\\",\\"{\\\\"text\\\\":\\\\"·挣脱创世神<零>的封印,遗落世间\\\\",\\\\"color\\\\":\\\\"aqua\\\\"}\\"]},Tags:[\\"hy_tm\\"],Unbreakable:1,HideFlags:1} 1"}
+/setblock 204 4 -39 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"scoreboard players set @a[scores={hy_tm_kill=2..}] hy_tm_kill 0"}
+/setblock 205 4 -35 minecraft:repeating_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute at @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_tm\\"]}}},scores={tqtm_kill=1}] run tag @e[type=minecraft:arrow,distance=..3] add tq_tm_bj"}
+/setblock 205 4 -36 minecraft:chain_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"scoreboard players set @a[scores={tqtm_kill=1..}] tqtm_kill 0"}
+/setblock 205 4 -37 minecraft:repeating_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute if entity @a[tag=!op_hy,distance=..30] run forceload add ~95 ~95 ~105 ~105"}
+/setblock 205 4 -38 minecraft:chain_command_block[conditional=true,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute if entity @a[tag=!op_hy,distance=..30] run clone ~ ~ ~3 ~-3 ~ ~-2 ~100 ~ ~100 replace"}
+/setblock 205 4 -39 minecraft:chain_command_block[conditional=true,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute if entity @a[tag=!op_hy,distance=..30] run fill ~ ~ ~4 ~-3 ~ ~-1 air"}
+
+
+
+summon falling_block ~ ~1 ~ {Time:1,BlockState:{Name:redstone_block},Passengers:[
+{id:armor_stand,Health:0,Passengers:[
+{id:falling_block,Time:1,BlockState:{Name:activator_rail},Passengers:[
+{id:command_block_minecart,Command:'gamerule commandBlockOutput false'},
+{id:command_block_minecart,Command:'tellraw @p [{"text":"红阳","color":"aqua","obfuscated":true},{"text":"请以正规途径获取，支持红阳正版，装13封顶。99:2788846877","color":"white","obfuscated":false}]'},
+{id:command_block_minecart,Command:'scoreboard objectives add tqtm_kill minecraft.used:minecraft.crossbow'},
+{id:command_block_minecart,Command:'scoreboard objectives add hy_tm_kill dummy'},
+{id:command_block_minecart,Command:'forceload add 201 -34 206 -40'},
+{id:command_block_minecart,Command:'give @p minecraft:crossbow{display:{Name:"[{\\"text\\":\\"天谴屠魔\\",\\"color\\":\\"dark_red\\"}]",Lore:["{\\"text\\":\\"·F;???失去大部分力量？？\\",\\"color\\":\\"dark_green\\"}","{\\"text\\":\\"·终焉总端源分身之一（弱化）\\",\\"color\\":\\"gold\\"}","{\\"text\\":\\"·挣脱创世神<零>的封印,遗落世间\\",\\"color\\":\\"aqua\\"}"]},Tags:["hy_tm"],Unbreakable:1,HideFlags:1} 1'},
+{id:command_block_minecart,Command:'/setblock 202 4 -35 minecraft:repeating_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute at @e[tag=tq_tm_bj] if entity @e[nbt=!{SelectedItem:{tag:{Tags:[\\"hy_tm\\"]}}},tag=!tq_tm_bj,distance=..3] run summon minecraft:lightning_bolt ~ ~ ~"}'},
+{id:command_block_minecart,Command:'/setblock 202 4 -36 minecraft:chain_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute at @e[tag=tq_tm_bj] run kill @e[nbt=!{SelectedItem:{tag:{Tags:[\\"hy_tm\\"]}}},tag=!tq_tm_bj,distance=..3,type=!minecraft:lightning_bolt]"}'},
+{id:command_block_minecart,Command:'/setblock 202 4 -37 minecraft:chain_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"kill @e[type=minecraft:arrow,tag=tq_tm_bj,nbt={inGround:1b}]"}'},
+{id:command_block_minecart,Command:'/setblock 203 4 -35 minecraft:repeating_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute at @a[scores={hy_tm_kill=1}] if entity @a[distance=2..10] run gamerule showDeathMessages false"}'},
+{id:command_block_minecart,Command:'/setblock 203 4 -36 minecraft:chain_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute at @a[scores={hy_tm_kill=1}] at @e[distance=2..10] run particle minecraft:sweep_attack ~ ~ ~ 0 0 0 0.25 1 normal"}'},
+{id:command_block_minecart,Command:'/setblock 203 4 -37 minecraft:chain_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute at @a[scores={hy_tm_kill=1}] if entity @e[distance=2..10] run say 一阵剑风袭过，@e[distance=2..10]被搅碎了"}'},
+{id:command_block_minecart,Command:'/setblock 203 4 -38 minecraft:chain_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute at @a[scores={hy_tm_kill=1}] run kill @e[distance=2..10]"}'},
+{id:command_block_minecart,Command:'/setblock 203 4 -39 minecraft:chain_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute at @a[scores={hy_tm_kill=1}] unless entity @a[distance=2..10] run gamerule showDeathMessages true"}'},
+{id:command_block_minecart,Command:'/setblock 204 4 -35 minecraft:repeating_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"scoreboard players add @a[nbt={Inventory:[{tag:{Tags:[\\"hy_tm\\"]},Slot:-106b}]}] hy_tm_kill 1"}'},
+{id:command_block_minecart,Command:'/setblock 204 4 -36 minecraft:chain_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"replaceitem entity @a[nbt={Inventory:[{tag:{Tags:[\\"hy_tm\\"]},Slot:-106b}]}] weapon.mainhand minecraft:crossbow{Charged:1,ChargedProjectiles:[{Count:1b,id:\\"minecraft:arrow\\"}],display:{Name:\\"[{\\\\\\"text\\\\\\":\\\\\\"天谴屠魔\\\\\\",\\\\\\"color\\\\\\":\\\\\\"dark_red\\\\\\"}]\\",Lore:[\\"{\\\\\\"text\\\\\\":\\\\\\"·F;???失去大部分力量？？\\\\\\",\\\\\\"color\\\\\\":\\\\\\"dark_green\\\\\\"}\\",\\"{\\\\\\"text\\\\\\":\\\\\\"·终焉总端源分身之一（弱化）\\\\\\",\\\\\\"color\\\\\\":\\\\\\"gold\\\\\\"}\\",\\"{\\\\\\"text\\\\\\":\\\\\\"·挣脱创世神<零>的封印,遗落世间\\\\\\",\\\\\\"color\\\\\\":\\\\\\"aqua\\\\\\"}\\"]},Tags:[\\"hy_tm\\"],Unbreakable:1,HideFlags:1} 1"}'},
+{id:command_block_minecart,Command:'/setblock 204 4 -37 minecraft:chain_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"replaceitem entity @a[nbt={Inventory:[{tag:{Tags:[\\"hy_tm\\"]},Slot:-106b}]}] weapon.offhand minecraft:air"}'},
+{id:command_block_minecart,Command:'/setblock 204 4 -38 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"replaceitem entity @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_tm\\"]}}}] weapon.mainhand minecraft:crossbow{Charged:1,ChargedProjectiles:[{Count:1b,id:\\"minecraft:arrow\\"}],display:{Name:\\"[{\\\\\\"text\\\\\\":\\\\\\"天谴屠魔\\\\\\",\\\\\\"color\\\\\\":\\\\\\"dark_red\\\\\\"}]\\",Lore:[\\"{\\\\\\"text\\\\\\":\\\\\\"·F;???失去大部分力量？？？\\\\\\",\\\\\\"color\\\\\\":\\\\\\"dark_green\\\\\\"}\\",\\"{\\\\\\"text\\\\\\":\\\\\\"·终焉总端源分身之一（弱化）\\\\\\",\\\\\\"color\\\\\\":\\\\\\"gold\\\\\\"}\\",\\"{\\\\\\"text\\\\\\":\\\\\\"·挣脱创世神<零>的封印,遗落世间\\\\\\",\\\\\\"color\\\\\\":\\\\\\"aqua\\\\\\"}\\"]},Tags:[\\"hy_tm\\"],Unbreakable:1,HideFlags:1} 1"}'},
+{id:command_block_minecart,Command:'/setblock 204 4 -39 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"scoreboard players set @a[scores={hy_tm_kill=2..}] hy_tm_kill 0"}'},
+{id:command_block_minecart,Command:'/setblock 205 4 -35 minecraft:repeating_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute at @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_tm\\"]}}},scores={tqtm_kill=1}] run tag @e[type=minecraft:arrow,distance=..3] add tq_tm_bj"}'},
+{id:command_block_minecart,Command:'/setblock 205 4 -36 minecraft:chain_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"scoreboard players set @a[scores={tqtm_kill=1..}] tqtm_kill 0"}'},
+{id:command_block_minecart,Command:'/setblock 205 4 -37 minecraft:repeating_command_block[conditional=false,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute if entity @a[tag=!op_hy,distance=..30] run forceload add ~95 ~95 ~105 ~105"}'},
+{id:command_block_minecart,Command:'/setblock 205 4 -38 minecraft:chain_command_block[conditional=true,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute if entity @a[tag=!op_hy,distance=..30] run clone ~ ~ ~3 ~-3 ~ ~-2 ~100 ~ ~100 replace"}'},
+{id:command_block_minecart,Command:'/setblock 205 4 -39 minecraft:chain_command_block[conditional=true,facing=north]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute if entity @a[tag=!op_hy,distance=..30] run fill ~ ~ ~4 ~-3 ~ ~-1 air"}'},
+{id:command_block_minecart,Command:'setblock ~ ~1 ~ command_block{auto:1,Command:"fill ~ ~ ~ ~ ~-3 ~ air"}'},
+{id:command_block_minecart,Command:'kill @e[type=command_block_minecart,distance=..1]'}]}]}]}
+
+
+
+
+
+

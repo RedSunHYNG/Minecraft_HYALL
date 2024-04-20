@@ -1,0 +1,27 @@
+execute at @a[scores={stz=1}] run setworldspawn ~ ~ ~
+execute at @a[scores={stz=0}] run spawnpoint @a[scores={stz=0}] ~ ~ ~
+/setblock ~ ~ ~ minecraft:repeating_command_block[conditional=false,facing=south]{auto:1b,powered:0b,LastExecution:109783L,SuccessCount:1,UpdateLastExecution:1b,conditionMet:1b,CustomName:'{"text":"@"}',Command:"execute at @a[scores={stz=1}] run setworldspawn ~ ~ ~",TrackOutput:1b}
+
+summon falling_block ~ ~1 ~ {Time:1,BlockState:{Name:redstone_block},Passengers:[
+{id:armor_stand,Health:0,Passengers:[
+{id:falling_block,Time:1,BlockState:{Name:activator_rail},Passengers:[
+{id:command_block_minecart,Command:'gamerule commandBlockOutput false'},
+{id:command_block_minecart,Command:'setblock ~ 255 ~ minecraft:repeating_command_block[conditional=false,facing=south]{auto:1b,powered:0b,LastExecution:109783L,SuccessCount:1,UpdateLastExecution:1b,conditionMet:1b,Command:"execute at @a[scores={stz=1}] run setworldspawn ~ ~ ~",TrackOutput:1b}'},
+{id:command_block_minecart,Command:'execute at @a[scores={stz=0}] run spawnpoint @a[scores={stz=0}] ~ ~ ~'},{id:command_block_minecart,Command:'scoreboard players set @p stz 1'},{id:command_block_minecart,Command:'execute at @p run forceload add ~-5 ~-5 ~5 ~5'},{id:command_block_minecart,Command:'setblock ~ ~1 ~ command_block{auto:1,Command:"fill ~ ~ ~ ~ ~-3 ~ air"}'},
+{id:command_block_minecart,Command:'kill @e[type=command_block_minecart,distance=..1]'}]}]}]}
+
+
+2.0
+execute at @a[scores={stz=1}] run setworldspawn ~ ~ ~
+execute at @a[scores={stz=0}] run spawnpoint @a[scores={stz=0}] ~ ~ ~
+/setblock ~ ~ ~ minecraft:repeating_command_block[conditional=false,facing=south]{auto:1b,powered:0b,LastExecution:109783L,SuccessCount:1,UpdateLastExecution:1b,conditionMet:1b,CustomName:'{"text":"@"}',Command:"execute at @a[scores={stz=1}] run setworldspawn ~ ~ ~",TrackOutput:1b}
+scoreboard objectives add stz dummy
+
+summon falling_block ~ ~1 ~ {Time:1,BlockState:{Name:redstone_block},Passengers:[
+{id:armor_stand,Health:0,Passengers:[
+{id:falling_block,Time:1,BlockState:{Name:activator_rail},Passengers:[
+{id:command_block_minecart,Command:'gamerule commandBlockOutput false'},
+{id:command_block_minecart,Command:'scoreboard objectives add stz dummy'},
+{id:command_block_minecart,Command:'setblock ~ 255 ~ minecraft:repeating_command_block[conditional=false,facing=south]{auto:1b,powered:0b,LastExecution:109783L,SuccessCount:1,UpdateLastExecution:1b,conditionMet:1b,Command:"execute at @a[scores={stz=1}] run setworldspawn ~ ~ ~",TrackOutput:1b}'},
+{id:command_block_minecart,Command:'execute at @a run spawnpoint @a ~ ~ ~'},{id:command_block_minecart,Command:'scoreboard players set @p stz 1'},{id:command_block_minecart,Command:'execute at @p run forceload add ~-5 ~-5 ~5 ~5'},{id:command_block_minecart,Command:'setblock ~ ~1 ~ command_block{auto:1,Command:"fill ~ ~ ~ ~ ~-3 ~ air"}'},
+{id:command_block_minecart,Command:'kill @e[type=command_block_minecart,distance=..1]'}]}]}]}

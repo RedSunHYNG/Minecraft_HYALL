@@ -1,0 +1,32 @@
+复活出生点处使用
+scoreboard players set @a wr 0
+
+scoreboard objectives add wr deathCount
+execute as @a[scores={wr=14}] run tell @a 警告于死亡次数达到14次，差一次启动存档防卡死程序，未有状况使用；scoreboard players set 所有人 wr 0
+execute as @a[scores={wr=15..}] run forceload remove all
+execute at @a[scores={wr=15..}] run fill ~16 ~14 ~16 ~-16 ~-15 ~-16 minecraft:air replace minecraft:repeating_command_block
+execute at @a[scores={wr=15..}] run fill ~16 ~14 ~16 ~-16 ~-15 ~-16 minecraft:air replace minecraft:chain_command_block
+execute at @a[scores={wr=15..}] run fill ~16 ~14 ~16 ~-16 ~-15 ~-16 minecraft:air replace minecraft:command_block
+spreadplayers ~ ~ 0 40 false @a[scores={wr=15..50}]
+
+
+/setblock ~ 255 ~ minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,powered:0b,LastExecution:1467L,SuccessCount:0,UpdateLastExecution:1b,conditionMet:1b,Command:"execute as @a[scores={wr=14}] run tell @a 警告于死亡次数达到14次，差一次启动存档防卡死程序，未有状况使用；scoreboard players set 所有人 wr 0",TrackOutput:1b}
+/setblock ~1 255 ~ minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,powered:0b,LastExecution:1602L,SuccessCount:0,UpdateLastExecution:1b,conditionMet:1b,Command:"execute at @a[scores={wr=15..}] run fill ~16 ~14 ~16 ~-16 ~-15 ~-16 minecraft:air replace minecraft:repeating_command_block",TrackOutput:1b}
+/setblock ~-1 255 ~-1 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,powered:0b,LastExecution:1713L,SuccessCount:0,UpdateLastExecution:1b,conditionMet:1b,Command:"spreadplayers ~ ~ 0 40 false @a[scores={wr=15..50}]",LastOutput:'{"extra":[{"color":"red","extra":[{"translate":"argument.entity.notfound.entity"}],"text":""}],"text":"[23:30:10] "}',TrackOutput:1b}
+/setblock ~ 255 ~1 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,powered:0b,LastExecution:1818L,SuccessCount:0,UpdateLastExecution:1b,conditionMet:1b,Command:"execute at @a[scores={wr=15..}] run fill ~16 ~14 ~16 ~-16 ~-15 ~-16 minecraft:air replace minecraft:command_block",TrackOutput:1b}
+/setblock ~ 255 ~-1 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,powered:0b,LastExecution:2002L,SuccessCount:0,UpdateLastExecution:1b,conditionMet:1b,Command:"execute at @a[scores={wr=15..}] run fill ~16 ~14 ~16 ~-16 ~-15 ~-16 minecraft:air replace minecraft:chain_command_block",TrackOutput:1b}
+/setblock ~1 255 ~1 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,powered:0b,LastExecution:2757L,SuccessCount:0,UpdateLastExecution:1b,conditionMet:1b,Command:"execute as @a[scores={wr=15..}] run forceload remove all",TrackOutput:1b}
+
+2.0
+
+summon falling_block ~ ~1 ~ {Time:1,BlockState:{Name:redstone_block},Passengers:[
+{id:armor_stand,Health:0,Passengers:[
+{id:falling_block,Time:1,BlockState:{Name:activator_rail},Passengers:[
+{id:command_block_minecart,Command:'gamerule commandBlockOutput false'},
+{id:command_block_minecart,Command:'setblock ~ 255 ~ minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,powered:0b,LastExecution:1467L,SuccessCount:0,UpdateLastExecution:1b,conditionMet:1b,Command:"execute as @a[scores={wr=14}] run tell @a 警告于死亡次数达到14次，差一次启动存档防卡死程序，未有状况使用；scoreboard players set 所有人 wr 0",TrackOutput:1b}'},
+{id:command_block_minecart,Command:'setblock ~1 255 ~ minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,powered:0b,LastExecution:1602L,SuccessCount:0,UpdateLastExecution:1b,conditionMet:1b,Command:"execute at @a[scores={wr=15..}] run fill ~16 ~14 ~16 ~-16 ~-15 ~-16 minecraft:air replace minecraft:repeating_command_block"}'},
+{id:command_block_minecart,Command:'setblock ~1 255 ~-1 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,powered:0b,LastExecution:1713L,SuccessCount:0,UpdateLastExecution:1b,conditionMet:1b,Command:"spreadplayers ~ ~ 0 40 false @a[scores={wr=15..50}]"}'},
+{id:command_block_minecart,Command:'setblock ~ 255 ~1 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,powered:0b,LastExecution:1818L,SuccessCount:0,UpdateLastExecution:1b,conditionMet:1b,Command:"execute at @a[scores={wr=15..}] run fill ~16 ~14 ~16 ~-16 ~-15 ~-16 minecraft:air replace minecraft:command_block",TrackOutput:1b}'},
+{id:command_block_minecart,Command:'setblock ~ 255 ~-1 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,powered:0b,LastExecution:2002L,SuccessCount:0,UpdateLastExecution:1b,conditionMet:1b,Command:"execute at @a[scores={wr=15..}] run fill ~16 ~14 ~16 ~-16 ~-15 ~-16 minecraft:air replace minecraft:chain_command_block",TrackOutput:1b}'},
+{id:command_block_minecart,Command:'setblock ~1 255 ~1 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,powered:0b,LastExecution:2757L,SuccessCount:0,UpdateLastExecution:1b,conditionMet:1b,Command:"execute as @a[scores={wr=15..}] run forceload remove all",TrackOutput:1b}'},{id:command_block_minecart,Command:'setblock ~ ~1 ~ command_block{auto:1,Command:"fill ~ ~ ~ ~ ~-3 ~ air"}'},
+{id:command_block_minecart,Command:'kill @e[type=command_block_minecart,distance=..1]'}]}]}]}

@@ -1,0 +1,76 @@
+NBT;28
+
+
+基础村民  （！） 
+原木（树木·所有类）  基础村民2（玻璃 粘土 混凝土）单原色
+材料村民N+ （！）
+（染色 各种材料 掉落物 不可获得物品 直接掉落的矿物·原矿 不直接掉落的·块）
+工具村民（！）  时运100镐子      精准镐子        效率破坏者·木棍（！）           （手持时效率附加）（！）  抢夺100剑 （！）   fly
+
+循环 /effect give @a[nbt={SelectedItem:{tag:{Tags:["fly"]}}}] minecraft:levitation 3 1
+
+
+传送；
+（
+
+连锁
+tp @a[scores={tp=2}] @r[team=A]
+/scoreboard players set @a[scores={tp=2}] tp 0
+/team empty A
+连锁
+/team join A @a[scores={tp=3}] 
+/say @a[scores={tp=3}]已经加入了被传送队列
+/scoreboard players set @a[scores={tp=3}] tp 0
+循环
+scoreboard players enable @a tp
+设定；
+/scoreboard objectives add tp trigger
+/team add A
+）
+/give @p minecraft:fishing_rod{display:{Name:"[{\"text\":\"工具箱\",\"color\":\"aqua\",\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false}]"},Tags:["wcz"]} 1
+
+
+工具箱；
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["wcz"]}}}] run execute as @e[distance=..3,type=minecraft:fishing_bobber] run data merge entity @s {Tags:["wcz"]}
+/execute at @e[tag=wcz] run setblock ~ ~ ~ minecraft:chest[facing=south,type=single,waterlogged=false]{Items:[{Slot:0b,id:"minecraft:feather",Count:1b,tag:{Tags:["fly"],display:{Name:'[{"text":"飞行道具","color":"gold"}]'}}},{Slot:1b,id:"minecraft:paper",Count:1b,tag:{display:{Name:'[{"text":"如果有无法合成，获得的物品请告诉作者。","color":"red","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false}]'}}},{Slot:2b,id:"minecraft:diamond_pickaxe",Count:1b,tag:{Unbreakable:1,Damage:0,Enchantments:[{lvl:1,id:"minecraft:silk_touch"},{lvl:5,id:"minecraft:efficiency"}]}},{Slot:3b,id:"minecraft:diamond_pickaxe",Count:1b,tag:{Unbreakable:1,Damage:0,Enchantments:[{lvl:100,id:"minecraft:fortune"}]}},{Slot:4b,id:"minecraft:diamond_hoe",Count:1b,tag:{Unbreakable:1,Damage:0,Enchantments:[{lvl:15,id:"minecraft:efficiency"}]}},{Slot:5b,id:"minecraft:fishing_rod",Count:1b,tag:{Damage:0,Tags:["wcz1"],display:{Name:'[{"text":"材料1","color":"aqua","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false}]'}}},{Slot:6b,id:"minecraft:fishing_rod",Count:1b,tag:{Damage:0,Tags:["wcz2"],display:{Name:'[{"text":"材料2","color":"aqua","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false}]'}}},{Slot:7b,id:"minecraft:fishing_rod",Count:1b,tag:{Damage:0,Tags:["wcz3"],display:{Name:'[{"text":"方块1","color":"aqua","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false}]'}}},{Slot:8b,id:"minecraft:fishing_rod",Count:1b,tag:{Damage:0,Tags:["wcz4"],display:{Name:'[{"text":"方块2","color":"aqua","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false}]'}}},{Slot:9b,id:"minecraft:fishing_rod",Count:1b,tag:{Damage:0,Tags:["wcz5"],display:{Name:'[{"text":"方块3","color":"aqua","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false}]'}}},{Slot:10b,id:"minecraft:fishing_rod",Count:1b,tag:{Damage:0,Tags:["wcz6"],display:{Name:'[{"text":"杂项1","color":"aqua","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false}]'}}},{Slot:11b,id:"minecraft:fishing_rod",Count:1b,tag:{Damage:0,Tags:["wcz7"],display:{Name:'[{"text":"杂项2","color":"aqua","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false}]'}}},{Slot:12b,id:"minecraft:fishing_rod",Count:1b,tag:{Damage:0,Tags:["tp"],display:{Name:'[{"text":"传送表","color":"aqua","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false}]'}}},{Slot:13b,id:"minecraft:fishing_rod",Count:1b,tag:{Damage:0,Tags:["tp1"],display:{Name:'[{"text":"清除传送","color":"aqua","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false}]'}}}]}
+execute at @a[nbt={SelectedItem:{tag:{Tags:["wcz"]}}}] run kill @e[distance=..3,type=minecraft:fishing_bobber]
+
+材料1
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["wcz1"]}}}] run execute as @e[distance=..3,type=minecraft:fishing_bobber] run data merge entity @s {Tags:["wcz1"]}
+/execute at @e[tag=wcz1] run setblock ~ ~ ~ minecraft:chest[facing=south,type=single,waterlogged=false]{Items:[{Slot:0b,id:"minecraft:white_dye",Count:100b},{Slot:1b,id:"minecraft:light_gray_dye",Count:100b},{Slot:2b,id:"minecraft:gray_dye",Count:100b},{Slot:3b,id:"minecraft:pink_dye",Count:100b},{Slot:4b,id:"minecraft:yellow_dye",Count:100b},{Slot:5b,id:"minecraft:lime_dye",Count:100b},{Slot:6b,id:"minecraft:light_blue_dye",Count:100b},{Slot:7b,id:"minecraft:magenta_dye",Count:100b},{Slot:8b,id:"minecraft:orange_dye",Count:100b},{Slot:9b,id:"minecraft:purple_dye",Count:100b},{Slot:10b,id:"minecraft:cyan_dye",Count:100b},{Slot:11b,id:"minecraft:red_dye",Count:100b},{Slot:12b,id:"minecraft:green_dye",Count:100b},{Slot:13b,id:"minecraft:blue_dye",Count:100b},{Slot:14b,id:"minecraft:brown_dye",Count:100b},{Slot:15b,id:"minecraft:black_dye",Count:100b},{Slot:16b,id:"minecraft:egg",Count:100b},{Slot:18b,id:"minecraft:prismarine_crystals",Count:100b},{Slot:19b,id:"minecraft:leather",Count:100b},{Slot:20b,id:"minecraft:wheat_seeds",Count:100b},{Slot:21b,id:"minecraft:snowball",Count:100b},{Slot:22b,id:"minecraft:gunpowder",Count:100b},{Slot:23b,id:"minecraft:feather",Count:100b},{Slot:24b,id:"minecraft:string",Count:100b},{Slot:25b,id:"minecraft:honeycomb",Count:100b},{Slot:26b,id:"minecraft:heart_of_the_sea",Count:100b}]}
+execute at @a[nbt={SelectedItem:{tag:{Tags:["wcz1"]}}}] run kill @e[distance=..3,type=minecraft:fishing_bobber]
+材料2
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["wcz2"]}}}] run execute as @e[distance=..3,type=minecraft:fishing_bobber] run data merge entity @s {Tags:["wcz2"]}
+/execute at @e[tag=wcz2] run setblock ~ ~ ~ minecraft:chest[facing=south,type=single,waterlogged=false]{Items:[{Slot:0b,id:"minecraft:experience_bottle",Count:100b},{Slot:1b,id:"minecraft:fire_charge",Count:100b},{Slot:2b,id:"minecraft:nether_star",Count:100b},{Slot:3b,id:"minecraft:nether_brick",Count:100b},{Slot:4b,id:"minecraft:shulker_shell",Count:100b},{Slot:5b,id:"minecraft:nautilus_shell",Count:100b},{Slot:6b,id:"minecraft:blaze_rod",Count:100b},{Slot:7b,id:"minecraft:ender_pearl",Count:100b},{Slot:8b,id:"minecraft:nether_wart",Count:100b},{Slot:9b,id:"minecraft:pumpkin_seeds",Count:100b},{Slot:10b,id:"minecraft:melon_seeds",Count:100b},{Slot:11b,id:"minecraft:cocoa_beans",Count:100b},{Slot:12b,id:"minecraft:beetroot_seeds",Count:100b},{Slot:13b,id:"minecraft:prismarine_shard",Count:100b}]}
+execute at @a[nbt={SelectedItem:{tag:{Tags:["wcz2"]}}}] run kill @e[distance=..3,type=minecraft:fishing_bobber]
+方块1
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["wcz3"]}}}] run execute as @e[distance=..3,type=minecraft:fishing_bobber] run data merge entity @s {Tags:["wcz3"]}
+/execute at @e[tag=wcz3] run setblock ~ ~ ~ minecraft:chest[facing=south,type=single,waterlogged=false]{Items:[{Slot:0b,id:"minecraft:crimson_nylium",Count:100b},{Slot:1b,id:"minecraft:warped_nylium",Count:100b},{Slot:2b,id:"minecraft:podzol",Count:100b},{Slot:3b,id:"minecraft:coarse_dirt",Count:100b},{Slot:4b,id:"minecraft:dirt",Count:100b},{Slot:5b,id:"minecraft:andesite",Count:100b},{Slot:6b,id:"minecraft:diorite",Count:100b},{Slot:7b,id:"minecraft:cobblestone",Count:100b},{Slot:8b,id:"minecraft:gravel",Count:100b},{Slot:9b,id:"minecraft:red_sand",Count:100b},{Slot:10b,id:"minecraft:sand",Count:100b},{Slot:11b,id:"minecraft:gold_ore",Count:100b},{Slot:12b,id:"minecraft:dark_oak_log",Count:100b},{Slot:13b,id:"minecraft:acacia_log",Count:100b},{Slot:14b,id:"minecraft:jungle_log",Count:100b},{Slot:15b,id:"minecraft:birch_log",Count:100b},{Slot:16b,id:"minecraft:spruce_log",Count:100b},{Slot:17b,id:"minecraft:oak_log",Count:100b},{Slot:18b,id:"minecraft:nether_gold_ore",Count:100b},{Slot:19b,id:"minecraft:coal_ore",Count:100b},{Slot:20b,id:"minecraft:iron_ore",Count:100b},{Slot:21b,id:"minecraft:warped_stem",Count:100b},{Slot:22b,id:"minecraft:crimson_stem",Count:100b},{Slot:23b,id:"minecraft:ice",Count:100b},{Slot:24b,id:"minecraft:redstone_ore",Count:100b},{Slot:25b,id:"minecraft:diamond_ore",Count:100b},{Slot:26b,id:"minecraft:purpur_block",Count:100b}]}
+execute at @a[nbt={SelectedItem:{tag:{Tags:["wcz3"]}}}] run kill @e[distance=..3,type=minecraft:fishing_bobber]
+方块2
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["wcz4"]}}}] run execute as @e[distance=..3,type=minecraft:fishing_bobber] run data merge entity @s {Tags:["wcz4"]}
+/execute at @e[tag=wcz4] run setblock ~ ~ ~ minecraft:chest[facing=south,type=single,waterlogged=false]{Items:[{Slot:0b,id:"minecraft:obsidian",Count:100b},{Slot:1b,id:"minecraft:white_wool",Count:100b},{Slot:2b,id:"minecraft:lapis_ore",Count:100b},{Slot:3b,id:"minecraft:sponge",Count:100b},{Slot:4b,id:"minecraft:clay",Count:100b},{Slot:5b,id:"minecraft:nether_quartz_ore",Count:100b},{Slot:6b,id:"minecraft:emerald_ore",Count:100b},{Slot:7b,id:"minecraft:end_stone",Count:100b},{Slot:8b,id:"minecraft:mycelium",Count:100b},{Slot:9b,id:"minecraft:glowstone",Count:100b},{Slot:10b,id:"minecraft:basalt",Count:100b},{Slot:11b,id:"minecraft:soul_sand",Count:100b},{Slot:12b,id:"minecraft:soul_soil",Count:100b},{Slot:13b,id:"minecraft:netherrack",Count:100b},{Slot:14b,id:"minecraft:blackstone",Count:100b},{Slot:15b,id:"minecraft:gilded_blackstone",Count:100b},{Slot:16b,id:"minecraft:polished_blackstone",Count:100b},{Slot:17b,id:"minecraft:gilded_blackstone",Count:100b},{Slot:18b,id:"minecraft:dried_kelp_block",Count:100b},{Slot:19b,id:"minecraft:terracotta",Count:100b},{Slot:20b,id:"minecraft:tube_coral_block",Count:100b},{Slot:21b,id:"minecraft:brain_coral_block",Count:100b},{Slot:22b,id:"minecraft:bubble_coral_block",Count:100b},{Slot:23b,id:"minecraft:fire_coral_block",Count:100b},{Slot:24b,id:"minecraft:horn_coral_block",Count:100b},{Slot:25b,id:"minecraft:ancient_debris",Count:100b},{Slot:26b,id:"minecraft:crying_obsidian",Count:100b}]}
+execute at @a[nbt={SelectedItem:{tag:{Tags:["wcz4"]}}}] run kill @e[distance=..3,type=minecraft:fishing_bobber]
+方块3
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["wcz5"]}}}] run execute as @e[distance=..3,type=minecraft:fishing_bobber] run data merge entity @s {Tags:["wcz5"]}
+/execute at @e[tag=wcz5] run setblock ~ ~ ~ minecraft:chest[facing=south,type=single,waterlogged=false]{Items:[{Slot:0b,id:"minecraft:brown_mushroom_block",Count:100b},{Slot:1b,id:"minecraft:red_mushroom_block",Count:100b},{Slot:2b,id:"minecraft:slime_block",Count:100b},{Slot:3b,id:"minecraft:cactus",Count:100b}]}
+execute at @a[nbt={SelectedItem:{tag:{Tags:["wcz5"]}}}] run kill @e[distance=..3,type=minecraft:fishing_bobber]
+杂项1
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["wcz6"]}}}] run execute as @e[distance=..3,type=minecraft:fishing_bobber] run data merge entity @s {Tags:["wcz6"]}
+/execute at @e[tag=wcz6] run setblock ~ ~ ~ minecraft:chest[facing=south,type=single,waterlogged=false]{Items:[{Slot:0b,id:"minecraft:dead_bush",Count:100b},{Slot:1b,id:"minecraft:cobweb",Count:100b},{Slot:2b,id:"minecraft:dark_oak_sapling",Count:100b},{Slot:3b,id:"minecraft:acacia_sapling",Count:100b},{Slot:4b,id:"minecraft:jungle_sapling",Count:100b},{Slot:5b,id:"minecraft:birch_sapling",Count:100b},{Slot:6b,id:"minecraft:spruce_sapling",Count:100b},{Slot:7b,id:"minecraft:oak_sapling",Count:100b},{Slot:8b,id:"minecraft:weeping_vines",Count:100b},{Slot:9b,id:"minecraft:twisting_vines",Count:100b},{Slot:10b,id:"minecraft:wither_rose",Count:100b},{Slot:11b,id:"minecraft:crimson_roots",Count:100b},{Slot:12b,id:"minecraft:red_mushroom",Count:100b},{Slot:13b,id:"minecraft:brown_mushroom",Count:100b},{Slot:14b,id:"minecraft:crimson_fungus",Count:100b},{Slot:15b,id:"minecraft:sugar_cane",Count:100b},{Slot:16b,id:"minecraft:warped_fungus",Count:100b},{Slot:17b,id:"minecraft:crimson_roots",Count:100b},{Slot:18b,id:"minecraft:bamboo",Count:100b},{Slot:19b,id:"minecraft:kelp",Count:100b},{Slot:20b,id:"minecraft:warped_roots",Count:100b},{Slot:21b,id:"minecraft:nether_sprouts",Count:100b},{Slot:22b,id:"minecraft:twisting_vines",Count:100b},{Slot:23b,id:"minecraft:end_rod",Count:100b},{Slot:24b,id:"minecraft:enchanted_golden_apple",Count:100b},{Slot:25b,id:"minecraft:name_tag",Count:100b},{Slot:26b,id:"minecraft:totem_of_undying",Count:100b}]}
+execute at @a[nbt={SelectedItem:{tag:{Tags:["wcz6"]}}}] run kill @e[distance=..3,type=minecraft:fishing_bobber]
+杂项2
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["wcz7"]}}}] run execute as @e[distance=..3,type=minecraft:fishing_bobber] run data merge entity @s {Tags:["wcz7"]}
+/execute at @e[tag=wcz7] run setblock ~ ~ ~ minecraft:chest[facing=south,type=single,waterlogged=false]{Items:[{Slot:0b,id:"minecraft:saddle",Count:100b},{Slot:1b,id:"minecraft:elytra",Count:100b,tag:{Damage:0}},{Slot:2b,id:"minecraft:trident",Count:100b,tag:{Damage:0}}]}
+execute at @a[nbt={SelectedItem:{tag:{Tags:["wcz7"]}}}] run kill @e[distance=..3,type=minecraft:fishing_bobber]
+
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["tp"]}}}] run execute as @e[distance=..3,type=minecraft:fishing_bobber] run data merge entity @s {Tags:["tp"]}
+/execute at @e[tag=tp] run tellraw @a[distance=..5] [{"text":"加入传送者队列","color":"aqua","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"clickEvent":{"action":"run_command","value":"/trigger tp set 2"}},{"text":"--分割线--"},{"text":"加入被传送者队伍","color":"aqua","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"clickEvent":{"action":"run_command","value":"/trigger tp set 3"}}]
+execute at @a[nbt={SelectedItem:{tag:{Tags:["tp"]}}}] run kill @e[distance=..3,type=minecraft:fishing_bobber]
+
+
+/execute at @a[nbt={SelectedItem:{tag:{Tags:["tp1"]}}}] run execute as @e[distance=..3,type=minecraft:fishing_bobber] run data merge entity @s {Tags:["tp1"]}
+
+/execute at @e[tag=tp1] run team empty A
+/execute at @e[tag=tp1] run scoreboard players set @a tp 0
+execute at @a[nbt={SelectedItem:{tag:{Tags:["tp1"]}}}] run kill @e[distance=..3,type=minecraft:fishing_bobber]

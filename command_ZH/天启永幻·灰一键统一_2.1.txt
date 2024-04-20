@@ -1,0 +1,83 @@
+﻿gamerule commandBlockOutput false
+
+time；
+ scoreboard objectives add 21090801 dummy 
+模式；mode276
+/scoreboard objectives add mode276 trigger
+/scoreboard players enable @a[nbt={SelectedItem:{tag:{Tags:["tqyhh"]}}}] mode276
+激发；
+scoreboard objectives add run271 dummy
+scoreboard objectives add run272 minecraft.used:bow 
+
+
+说明计分+宣告
+tellraw @a[nbt={SelectedItem:{tag:{Tags:["tqyhh"]}}},scores={21090801=0}] [{"text":"侵蚀","color":"dark_blue","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"clickEvent":{"action":"run_command","value":"/trigger mode276 set 0"}},{"text":"爆破","color":"dark_green","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"clickEvent":{"action":"run_command","value":"/trigger mode276 set 1"}},{"text":"源点","color":"dark_aqua","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"clickEvent":{"action":"run_command","value":"/trigger mode276 set 2"}},{"text":"如梭","color":"dark_red","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"clickEvent":{"action":"run_command","value":"/trigger mode276 set 3"}},{"text":"深渊","color":"dark_purple","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"clickEvent":{"action":"run_command","value":"/trigger mode276 set 4"}}]
+连锁
+scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["tqyhh"]}}},scores={21090801=0}] 21090801 1
+
+scoreboard players set @a[nbt=!{SelectedItem:{tag:{Tags:["tqyhh"]}}},scores={21090801=1}] 21090801 0
+
+
+/give @p minecraft:bow{display:{Name:"[{\"text\":\"天启永幻·灰\",\"color\":\"gray\",\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false}]"},Tags:["tqyhh"],Unbreakable:1,HideFlags:5,Enchantments:[{id:"minecraft:power",lvl:2147483647},{id:"minecraft:infinity",lvl:1}]} 1
+
+
+
+射击计分
+
+execute at @e[type=arrow] run scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["tqyhh"]}}},distance=..4] run271 1
+
+侵蚀
+execute at @e[tag=fill_090602] run fill ~-2 ~-2 ~-2 ~2 ~2 ~2 air
+
+
+execute at @a[nbt=!{SelectedItem:{tag:{Tags:["tqyhh"]}}},scores={mode276=0,run271=1}] run kill @e[tag=fill_090602]
+
+scoreboard players set @a[nbt=!{SelectedItem:{tag:{Tags:["tqyhh"]}}},scores={mode276=0,run271=2}] run271 0
+
+深渊
+
+
+execute at @e[tag=fill_090601] run execute at @a[distance=..3,nbt=!{SelectedItem:{tag:{Tags:["tqyhh"]}}}] run fill ~-2 ~-2 ~-2 ~2 ~2 ~2 bedrock hollow 
+kill @e[tag=fill_090601]
+
+ 
+ /execute at @a[nbt={SelectedItem:{tag:{Tags:[\\"tqyhh\\"]}}},scores={mode276=0,run272=1}] run execute as @e[type=arrow,distance=..3] run data merge entity @s {Tags:[\\"fill_090602\\"]}
+scoreboard players set @a[scores={mode276=0,run272=1}] run272 0
+ /execute at @a[nbt={SelectedItem:{tag:{Tags:[\\"tqyhh\\"]}}},scores={mode276=1,run272=1}] run execute as @e[type=arrow,distance=..3] run data merge entity @s {Tags:[\\"summon_090601\\"]}
+scoreboard players set @a[scores={mode276=1,run272=1}] run272 0
+ /execute at @a[nbt={SelectedItem:{tag:{Tags:[\\"tqyhh\\"]}}},scores={mode276=2,run272=1}] run execute as @e[type=arrow,distance=..3] run data merge entity @s {Tags:[\\"kill_090601\\"]}
+scoreboard players set @a[scores={mode276=2,run272=1}] run272 0
+ /execute at @a[nbt={SelectedItem:{tag:{Tags:[\\"tqyhh\\"]}}},scores={mode276=3,run272=1}] run execute as @e[type=arrow,distance=..3] run data merge entity @s {Tags:[\\"tp_090601\\"]}
+scoreboard players set @a[scores={mode276=3,run272=1}] run272 0
+ /execute at @a[nbt={SelectedItem:{tag:{Tags:[\\"tqyhh\\"]}}},scores={mode276=4,run272=1}] run execute as @e[type=arrow,distance=..3] run data merge entity @s {Tags:[\\"fill_090601\\"]}
+scoreboard players set @a[scores={mode276=4,run272=1}] run272 0
+
+爆破
+
+summon minecraft:creeper ~ ~1 ~ {CustomName:\\"[{\\\\\\"text\\\\\\":\\\\\\"天空神雷\\\\\\",\\\\\\"color\\\\\\":\\\\\\"gold\\\\\\"}]\\",ActiveEffects:[{Id:14,Amplifier:0,Duration:199980,ShowParticles:0b}],ignited:1b,ExplosionRadius:100}
+
+kill @e[tag=summon_090601]
+
+
+
+源点
+execute at @e[tag=kill_090601] run kill @e[nbt=!{SelectedItem:{tag:{Tags:["tqyhh"]}}},distance=..3,tag=!kill_090601]
+execute at @e[tag=kill_090601] run say @p[distance=..3]承受了过量的虚空能量
+/kill @e[kill_090601]
+
+如梭
+execute at @a[nbt=!{SelectedItem:{tag:{Tags:["tqyhh"]}}},scores={mode276=3,run271=1}] run execute at @e[tag=tp_090601] run tp @a[scores={mode276=3,run271=1}] ~ ~ ~
+
+scoreboard players set @a[nbt=!{SelectedItem:{tag:{Tags:["tqyhh"]}}},scores={mode276=3,run271=1}] run271 0
+
+kill @e[tag=tp_090601]
+
+
+
+summon falling_block ~ ~1 ~ {Time:1,BlockState:{Name:redstone_block},Passengers:[
+{id:armor_stand,Health:0,Passengers:[
+{id:falling_block,Time:99,BlockState:{Name:activator_rail},Passengers:[{id:command_block_minecart,Command:'/say 红阳出品，装13封顶。请支持正版。99:2788846877'},{id:command_block_minecart,Command:'scoreboard objectives add run272 minecraft.used:bow'},
+{id:command_block_minecart,Command:'gamerule commandBlockOutput false'},{id:command_block_minecart,Command:'scoreboard objectives add 21090801 dummy'},{id:command_block_minecart,Command:'scoreboard objectives add mode276 trigger'},{id:command_block_minecart,Command:'scoreboard objectives add run271 dummy'},{id:command_block_minecart,Command:'give @p minecraft:bow{display:{Name:"[{\\"text\\":\\"天启永幻·灰\\",\\"color\\":\\"gray\\",\\"bold\\":false,\\"italic\\":false,\\"underlined\\":false,\\"strikethrough\\":false,\\"obfuscated\\":false}]"},Tags:["tqyhh"],Unbreakable:1,HideFlags:5,Enchantments:[{id:"minecraft:power",lvl:2147483647},{id:"minecraft:infinity",lvl:1}]} 1'},{id:command_block_minecart,Command:'setblock ~1 250 ~2 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,Command:"scoreboard players enable @a[nbt={SelectedItem:{tag:{Tags:[\\"tqyhh\\"]}}}] mode276"}'},{id:command_block_minecart,Command:'setblock ~ 250 ~1 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,Command:"execute at @a[nbt={SelectedItem:{tag:{Tags:[\\"tqyhh\\"]}}},scores={mode276=0,run272=1}] run execute as @e[type=arrow,distance=..3] run data merge entity @s {Tags:[\\"fill_090602\\"]}"}'},{id:command_block_minecart,Command:'setblock ~ 250 ~2 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,Command:"execute at @a[nbt={SelectedItem:{tag:{Tags:[\\"tqyhh\\"]}}},scores={mode276=1,run272=1}] run execute as @e[type=arrow,distance=..3] run data merge entity @s {Tags:[\\"summon_090601\\"]}"}'},{id:command_block_minecart,Command:'setblock ~ 250 ~-1 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,Command:"execute at @a[nbt={SelectedItem:{tag:{Tags:[\\"tqyhh\\"]}}},scores={mode276=2,run272=1}] run execute as @e[type=arrow,distance=..3] run data merge entity @s {Tags:[\\"kill_090601\\"]}"}'},{id:command_block_minecart,Command:'setblock ~ 250 ~-2 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,Command:"execute at @a[nbt={SelectedItem:{tag:{Tags:[\\"tqyhh\\"]}}},scores={mode276=3,run272=1}] run execute as @e[type=arrow,distance=..3] run data merge entity @s {Tags:[\\"tp_090601\\"]}"}'},{id:command_block_minecart,Command:'setblock ~ 250 ~ minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,Command:"execute at @a[nbt={SelectedItem:{tag:{Tags:[\\"tqyhh\\"]}}},scores={mode276=4,run272=1}] run execute as @e[type=arrow,distance=..3] run data merge entity @s {Tags:[\\"fill_090601\\"]}"}'},{id:command_block_minecart,Command:'setblock ~-1 250 ~1 minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,Command:"scoreboard players set @a[scores={mode276=0,run272=1}] run272 0"}'},{id:command_block_minecart,Command:'setblock ~-1 250 ~2 minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,Command:"scoreboard players set @a[scores={mode276=1,run272=1}] run272 0"}'},{id:command_block_minecart,Command:'setblock ~-1 250 ~-1 minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,Command:"scoreboard players set @a[scores={mode276=2,run272=1}] run272 0"}'},{id:command_block_minecart,Command:'setblock ~-1 250 ~-2 minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,Command:"scoreboard players set @a[scores={mode276=3,run272=1}] run272 0"}'},{id:command_block_minecart,Command:'setblock ~-1 250 ~ minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,Command:"scoreboard players set @a[scores={mode276=4,run272=1}] run272 0"}'},{id:command_block_minecart,Command:'setblock ~1 250 ~1 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,Command:"scoreboard players set @a[nbt=!{SelectedItem:{tag:{Tags:[\\"tqyhh\\"]}}},scores={21090801=1}] 21090801 0"}'},{id:command_block_minecart,Command:'scoreboard players set @a 21090801 0'},{id:command_block_minecart,Command:'setblock ~1 250 ~ minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,Command:"execute at @e[type=arrow] run scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:[\\"tqyhh\\"]}}},distance=..4] run271 1"}'},{id:command_block_minecart,Command:'setblock ~1 251 ~-2 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,Command:"tellraw @a[nbt={SelectedItem:{tag:{Tags:[\\"tqyhh\\"]}}},scores={21090801=0}] [{\\"text\\":\\"侵蚀\\",\\"color\\":\\"dark_blue\\",\\"bold\\":false,\\"italic\\":false,\\"underlined\\":false,\\"strikethrough\\":false,\\"obfuscated\\":false,\\"clickEvent\\":{\\"action\\":\\"run_command\\",\\"value\\":\\"/trigger mode276 set 0\\"}},{\\"text\\":\\"爆破\\",\\"color\\":\\"dark_green\\",\\"bold\\":false,\\"italic\\":false,\\"underlined\\":false,\\"strikethrough\\":false,\\"obfuscated\\":false,\\"clickEvent\\":{\\"action\\":\\"run_command\\",\\"value\\":\\"/trigger mode276 set 1\\"}},{\\"text\\":\\"源点\\",\\"color\\":\\"dark_aqua\\",\\"bold\\":false,\\"italic\\":false,\\"underlined\\":false,\\"strikethrough\\":false,\\"obfuscated\\":false,\\"clickEvent\\":{\\"action\\":\\"run_command\\",\\"value\\":\\"/trigger mode276 set 2\\"}},{\\"text\\":\\"如梭\\",\\"color\\":\\"dark_red\\",\\"bold\\":false,\\"italic\\":false,\\"underlined\\":false,\\"strikethrough\\":false,\\"obfuscated\\":false,\\"clickEvent\\":{\\"action\\":\\"run_command\\",\\"value\\":\\"/trigger mode276 set 3\\"}},{\\"text\\":\\"深渊\\",\\"color\\":\\"dark_purple\\",\\"bold\\":false,\\"italic\\":false,\\"underlined\\":false,\\"strikethrough\\":false,\\"obfuscated\\":false,\\"clickEvent\\":{\\"action\\":\\"run_command\\",\\"value\\":\\"/trigger mode276 set 4\\"}}]"}'},{id:command_block_minecart,Command:'setblock ~ 251 ~-2 minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,Command:"scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:[\\"tqyhh\\"]}}},scores={21090801=0}] 21090801 1"}'},{id:command_block_minecart,Command:'setblock ~1 251 ~-1 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,Command:"execute at @e[tag=fill_090602] run fill ~-2 ~-2 ~-2 ~2 ~2 ~2 air"}'},{id:command_block_minecart,Command:'setblock ~ 251 ~-1 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,Command:"execute at @a[nbt=!{SelectedItem:{tag:{Tags:[\\"tqyhh\\"]}}},scores={mode276=0,run271=1}] run kill @e[tag=fill_090602]"}'},{id:command_block_minecart,Command:'setblock ~-1 251 ~-1 minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,Command:"scoreboard players set @a[nbt=!{SelectedItem:{tag:{Tags:[\\"tqyhh\\"]}}},scores={mode276=0,run271=1}] run271 0"}
+'},{id:command_block_minecart,Command:'setblock ~1 251 ~ minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,Command:"execute at @e[tag=fill_090601] run execute at @a[distance=..3,nbt=!{SelectedItem:{tag:{Tags:[\\"tqyhh\\"]}}}] run fill ~-2 ~-2 ~-2 ~2 ~2 ~2 bedrock hollow"}'},{id:command_block_minecart,Command:'setblock ~ 251 ~ minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,Command:"kill @e[tag=fill_090601]"}'},{id:command_block_minecart,Command:'setblock ~1 251 ~1 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,Command:"execute at @e[nbt=!{SelectedItem:{tag:{Tags:[\\"tqyhh\\"]}}},tag=!summon_090601] run execute at @e[distance=..3,tag=summon_090601] run summon minecraft:creeper ~ ~1 ~ {CustomName:\\"[{\\\\\\"text\\\\\\":\\\\\\"天空神雷\\\\\\",\\\\\\"color\\\\\\":\\\\\\"gold\\\\\\"}]\\",ActiveEffects:[{Id:14,Amplifier:0,Duration:199980,ShowParticles:0b}],ignited:1b,ExplosionRadius:100}"}'},{id:command_block_minecart,Command:'setblock ~ 251 ~1 minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,Command:"kill @e[tag=summon_090601]"}'},{id:command_block_minecart,Command:'setblock ~1 251 ~2 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,Command:"execute at @e[tag=kill_090601] run kill @e[nbt=!{SelectedItem:{tag:{Tags:[\\"tqyhh\\"]}}},distance=..3,tag=!kill_090601]"}'},{id:command_block_minecart,Command:'setblock ~ 251 ~2 minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,Command:"execute at @e[tag=kill_090601] run say @e[distance=..3]承受了过量的虚空能量"}'},{id:command_block_minecart,Command:'setblock ~-1 251 ~2 minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,Command:"kill @e[tag=kill_090601]"}'},{id:command_block_minecart,Command:'setblock ~1 252 ~-2 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,Command:"execute at @a[nbt=!{SelectedItem:{tag:{Tags:[\\"tqyhh\\"]}}},scores={mode276=3,run271=1}] run execute at @e[tag=tp_090601] run tp @a[scores={mode276=3,run271=1}] ~ ~ ~"}'},{id:command_block_minecart,Command:'setblock ~ 252 ~-2 minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,Command:"scoreboard players set @a[nbt=!{SelectedItem:{tag:{Tags:[\\"tqyhh\\"]}}},scores={mode276=3,run271=1}] run271 0"}'},{id:command_block_minecart,Command:'setblock ~-1 252 ~-2 minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,Command:"kill @e[tag=tp_090601]"}'},{id:command_block_minecart,Command:'setblock ~1 250 ~-1 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,Command:"scoreboard players set @a[scores={run272=2..}] run272 1"}'},{id:command_block_minecart,Command:'setblock ~ ~1 ~ command_block{auto:1,Command:"fill ~ ~ ~ ~ ~-3 ~ air"}'},
+{id:command_block_minecart,Command:'kill @e[type=command_block_minecart,distance=..1]'}]}]}]}
+

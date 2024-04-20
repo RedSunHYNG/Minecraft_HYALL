@@ -1,0 +1,26 @@
+setblock ~ ~ ~ minecraft:command_block
+
+gamemode creative
+
+summon falling_block ~ ~1 ~ {Time:1,BlockState:{Name:redstone_block},Passengers:[
+{id:armor_stand,Health:0,Passengers:[
+{id:falling_block,Time:99,BlockState:{Name:activator_rail},Passengers:[
+{id:command_block_minecart,Command:'give @p minecraft:netherite_sword{Unbreakable:1,Enchantments:[{id:"minecraft:sweeping",lvl:32767},{id:"minecraft:sharpness",lvl:32767},{id:"minecraft:silk_touch",lvl:1}]} 1'},
+{id:command_block_minecart,Command:'give @p minecraft:crossbow{Unbreakable:1,Enchantments:[{id:"minecraft:piercing",lvl:32767},{id:"minecraft:multishot",lvl:5},{id:"minecraft:quick_charge",lvl:5}]} 1'},{id:command_block_minecart,Command:'give @p minecraft:netherite_pickaxe{Unbreakable:1,Enchantments:[{id:"minecraft:fortune",lvl:100},{id:"minecraft:knockback",lvl:100}]}'},
+{id:command_block_minecart,Command:'replaceitem entity @p armor.head minecraft:netherite_helmet{Unbreakable:1,Enchantments:[{id:"minecraft:protection",lvl:32767}]} 1'},{id:command_block_minecart,Command:'/replaceitem entity @p armor.chest minecraft:elytra{Unbreakable:1,Enchantments:[{id:"minecraft:protection",lvl:32767}]} 1'},{id:command_block_minecart,Command:'/replaceitem entity @p armor.legs minecraft:netherite_leggings{Unbreakable:1,Enchantments:[{id:"minecraft:protection",lvl:32767}]} 1'},{id:command_block_minecart,Command:'/replaceitem entity @p weapon.offhand minecraft:shield{Unbreakable:1,Enchantments:[{id:"minecraft:thorns",lvl:32767}],BlockEntityTag:{Base:15}} 1'},{id:command_block_minecart,Command:'/effect give @p minecraft:resistance 99999 254'},{id:command_block_minecart,Command:'/replaceitem entity @p armor.feet minecraft:netherite_boots{Unbreakable:1,Enchantments:[{id:"minecraft:protection",lvl:32767}]} 1'},{id:command_block_minecart,Command:'/give @p minecraft:bow{Unbreakable:1,Enchantments:[{id:"minecraft:infinity",lvl:1},{id:"minecraft:power",lvl:32767}]} 1'},{id:command_block_minecart,Command:'/give @p minecraft:trident{Unbreakable:1,Enchantments:[{id:"minecraft:channeling",lvl:1},{id:"minecraft:impaling",lvl:32767},{id:"minecraft:loyalty",lvl:3},{id:"minecraft:sharpness",lvl:5}]} 1'},{id:command_block_minecart,Command:'give @p arrow 64'},{id:command_block_minecart,Command:'setblock ~ ~1 ~ command_block{auto:1,Command:"fill ~ ~ ~ ~ ~-3 ~ air"}'},{id:command_block_minecart,Command:'kill @e[type=command_block_minecart,distance=..1]'}]}]}]}
+
+/replaceitem entity @p armor.chest minecraft:netherite_chestplate{Enchantments:[{id:"minecraft:protection",lvl:32767}]} 1
+
+
+2147483647
+
+
+summon falling_block ~ ~1 ~ {Time:1,BlockState:{Name:redstone_block},Passengers:[
+{id:armor_stand,Health:0,Passengers:[
+{id:falling_block,Time:99,BlockState:{Name:activator_rail},Passengers:[
+{id:command_block_minecart,Command:'give @p minecraft:netherite_sword{Unbreakable:1,Enchantments:[{id:"minecraft:sweeping",lvl:2147483647},{id:"minecraft:sharpness",lvl:2147483647},{id:"minecraft:silk_touch",lvl:1}]} 1'},
+{id:command_block_minecart,Command:'give @p minecraft:crossbow{Unbreakable:1,Enchantments:[{id:"minecraft:piercing",lvl:2147483647},{id:"minecraft:multishot",lvl:5},{id:"minecraft:quick_charge",lvl:5}]} 1'},{id:command_block_minecart,Command:'give @p minecraft:netherite_pickaxe{Unbreakable:1,Enchantments:[{id:"minecraft:fortune",lvl:100},{id:"minecraft:knockback",lvl:100}]}'},
+{id:command_block_minecart,Command:'replaceitem entity @p armor.head minecraft:netherite_helmet{Unbreakable:1,Enchantments:[{id:"minecraft:protection",lvl:2147483647}]} 1'},{id:command_block_minecart,Command:'/replaceitem entity @p armor.chest minecraft:elytra{Unbreakable:1,Enchantments:[{id:"minecraft:protection",lvl:2147483647}]} 1'},{id:command_block_minecart,Command:'/replaceitem entity @p armor.legs minecraft:netherite_leggings{Unbreakable:1,Enchantments:[{id:"minecraft:protection",lvl:2147483647}]} 1'},{id:command_block_minecart,Command:'/replaceitem entity @p weapon.offhand minecraft:shield{Unbreakable:1,Enchantments:[{id:"minecraft:thorns",lvl:2147483647}],BlockEntityTag:{Base:15}} 1'},{id:command_block_minecart,Command:'/effect give @p minecraft:resistance 99999 254'},{id:command_block_minecart,Command:'/replaceitem entity @p armor.feet minecraft:netherite_boots{Unbreakable:1,Enchantments:[{id:"minecraft:protection",lvl:2147483647}]} 1'},{id:command_block_minecart,Command:'/give @p minecraft:bow{Unbreakable:1,Enchantments:[{id:"minecraft:infinity",lvl:1},{id:"minecraft:power",lvl:2147483647}]} 1'},{id:command_block_minecart,Command:'/give @p minecraft:trident{Unbreakable:1,Enchantments:[{id:"minecraft:channeling",lvl:1},{id:"minecraft:impaling",lvl:2147483647},{id:"minecraft:loyalty",lvl:3},{id:"minecraft:sharpness",lvl:5}]} 1'},{id:command_block_minecart,Command:'give @p arrow 64'},{id:command_block_minecart,Command:'setblock ~ ~1 ~ command_block{auto:1,Command:"fill ~ ~ ~ ~ ~-3 ~ air"}'},{id:command_block_minecart,Command:'kill @e[type=command_block_minecart,distance=..1]'}]}]}]}
+
+/replaceitem entity @p armor.chest minecraft:netherite_chestplate{Enchantments:[{id:"minecraft:protection",lvl:2147483647}]} 1
+/give @p minecraft:trident{Unbreakable:1,Enchantments:[{id:"minecraft:riptide",lvl:2147483647}]} 1
