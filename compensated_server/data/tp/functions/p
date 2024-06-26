@@ -1,0 +1,22 @@
+#5模组附属
+execute in lostcities:lostcity as @a[scores={tp_table=5}] run tp ~ 384 ~
+execute as @a[scores={tp_table=5}] at @s run fill ~ ~ ~ ~ ~1 ~ minecraft:air
+execute as @a[scores={tp_table=5}] at @s run effect give @s minecraft:resistance 10 4
+scoreboard players set @a[scores={tp_table=5}] tp_table 0
+#6模组附属
+execute in twilightforest:twilight_forest as @a[scores={tp_table=6}] run tp ~ 384 ~
+execute as @a[scores={tp_table=6}] at @s run fill ~ ~ ~ ~ ~1 ~ minecraft:air
+execute as @a[scores={tp_table=6}] at @s run effect give @s minecraft:resistance 10 4
+scoreboard players set @a[scores={tp_table=6}] tp_table 0
+
+#7
+execute in the_nether as @a[scores={tp_table=7}] run tp ~ ~ ~
+execute as @a[scores={tp_table=7}] at @s run fill ~ ~ ~ ~ ~1 ~ minecraft:air
+execute as @a[scores={tp_table=7}] at @s run effect give @s minecraft:resistance 10 4
+scoreboard players set @a[scores={tp_table=7}] tp_table 0
+
+#8
+execute in overworld as @a[scores={tp_table=8}] run tp ~ 384 ~
+execute as @a[scores={tp_table=8}] at @s run fill ~ ~ ~ ~ ~1 ~ minecraft:air
+execute as @a[scores={tp_table=8}] at @s run effect give @s minecraft:resistance 10 4
+scoreboard players set @a[scores={tp_table=8}] tp_table 0
