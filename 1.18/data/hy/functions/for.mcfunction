@@ -1,0 +1,7 @@
+execute if entity @a[tag=tp_on] run function hy:tp
+execute if entity @a[tag=nm_on] run function hy:nightmare
+function hy:mode
+scoreboard players add @a[tag=!tell_time] tell_time 1
+execute as @a[tag=!tell_time,scores={tell_time=200}] at @s run function hy:say
+tellraw @a[tag=say] [{"text":"开启传送","color":"green","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"clickEvent":{"action":"run_command","value":"/tag @p add tp_on"}},{"text":"关闭传送","color":"red","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"clickEvent":{"action":"run_command","value":"/tag @a remove tp_on"}},{"text":"启动nightmare难度","color":"green","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"clickEvent":{"action":"run_command","value":"/tag @p add nm_on"}},{"text":"关闭nightmare难度","color":"red","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"clickEvent":{"action":"run_command","value":"/tag @a remove nm_on"}},{"text":"开启背包保护","color":"green","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"clickEvent":{"action":"run_command","value":"/gamerule keepInventory true"}},{"text":"关闭背包保护","color":"red","bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"clickEvent":{"action":"run_command","value":"/gamerule keepInventory false"}}]
+tag @a remove say

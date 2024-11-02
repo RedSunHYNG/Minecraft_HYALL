@@ -1,0 +1,19 @@
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={hy_zdy_smode=1,hy_zdy_zd=1,hy_zdy_r1=1..}] run tag @e[distance=..2,type=minecraft:arrow] add hy_zdy_zd1
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={hy_zdy_smode=1,hy_zdy_zd=2,hy_zdy_r1=1..}] run tag @e[distance=..2,type=minecraft:arrow] add hy_zdy_zd2
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={hy_zdy_smode=1,hy_zdy_zd=3,hy_zdy_r1=1..}] run tag @e[distance=..2,type=minecraft:arrow] add hy_zdy_zd3
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={hy_zdy_smode=2,hy_zdy_zd=1,hy_zdy_r1=1..}] run tag @e[distance=..2,type=minecraft:arrow] add hy_zdy_zd4
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={hy_zdy_smode=2,hy_zdy_zd=2,hy_zdy_r1=1..}] run tag @e[distance=..2,type=minecraft:arrow] add hy_zdy_zd5
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={hy_zdy_smode=2,hy_zdy_zd=3,hy_zdy_r1=1..}] run tag @e[distance=..2,type=minecraft:arrow] add hy_zdy_zd6
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={hy_zdy_smode=3,hy_zdy_zd=1,hy_zdy_r1=1..}] run tag @e[distance=..2,type=minecraft:arrow] add hy_zdy_zd7
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={hy_zdy_smode=3,hy_zdy_zd=2,hy_zdy_r1=1..}] run tag @e[distance=..2,type=minecraft:arrow] add hy_zdy_zd8
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={hy_zdy_smode=3,hy_zdy_zd=3,hy_zdy_r1=1..}] run tag @e[distance=..2,type=minecraft:arrow] add hy_zdy_zd9
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={hy_zdy_smode=4,hy_zdy_zd=1,hy_zdy_r1=1..}] run tag @e[distance=..2,type=minecraft:arrow] add hy_zdy_zd10
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={hy_zdy_smode=4,hy_zdy_zd=2,hy_zdy_r1=1..}] run tag @e[distance=..2,type=minecraft:arrow] add hy_zdy_zd11
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={hy_zdy_smode=4,hy_zdy_zd=3,hy_zdy_r1=1..}] run tag @e[distance=..2,type=minecraft:arrow] add hy_zdy_zd12
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={hy_zdy_smode=5,hy_zdy_zd=1,hy_zdy_r1=1..}] run tag @e[distance=..2,type=minecraft:arrow] add hy_zdy_zd13
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={hy_zdy_smode=5,hy_zdy_zd=2,hy_zdy_r1=1..}] run tag @e[distance=..2,type=minecraft:arrow] add hy_zdy_zd14
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={hy_zdy_smode=5,hy_zdy_zd=3,hy_zdy_r1=1..}] run tag @e[distance=..2,type=minecraft:arrow] add hy_zdy_zd15
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={hy_zdy_smode=6,hy_zdy_zd=1,hy_zdy_r1=1..}] run tag @e[distance=..2,type=minecraft:arrow] add hy_zdy_zd16
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={hy_zdy_smode=6,hy_zdy_zd=2,hy_zdy_r1=1..}] run tag @e[distance=..2,type=minecraft:arrow] add hy_zdy_zd17
+execute at @a[nbt={SelectedItem:{tag:{Tags:["mode1"]}}},scores={hy_zdy_smode=6,hy_zdy_zd=3,hy_zdy_r1=1..}] run tag @e[distance=..2,type=minecraft:arrow] add hy_zdy_zd18
+scoreboard players set @a hy_zdy_r1 0

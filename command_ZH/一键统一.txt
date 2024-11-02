@@ -1,0 +1,27 @@
+/setblock ~ ~ ~ minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,CustomName:'{"text":"@"}',Command:""}
+/setblock ~ ~ ~ minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,CustomName:'{"text":"@"}',Command:""}
+
+/setblock ~ ~ ~ minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,Command:""}
+/setblock ~ ~ ~ minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,Command:""}
+
+
+/setblock ~ ~ ~ minecraft:chain_command_block[conditional=false,facing=west]{auto:1b,CustomName:'{"text":"@"}',Command:""}
+
+/setblock ~ ~ ~ minecraft:chain_command_block[conditional=false,facing=west]{auto:1b,Command:""}
+
+summon falling_block ~ ~1 ~ {Time:1,BlockState:{Name:redstone_block},Passengers:[
+{id:armor_stand,Health:0,Passengers:[
+{id:falling_block,Time:99,BlockState:{Name:activator_rail},Passengers:[
+{id:command_block_minecart,Command:''},{id:command_block_minecart,Command:'setblock ~ ~1 ~ command_block{auto:1,Command:"fill ~ ~ ~ ~ ~-3 ~ air"}'},
+{id:command_block_minecart,Command:'kill @e[type=command_block_minecart,distance=..1]'}]}]}]}
+
+
+
+zdycs211007
+
+summon falling_block ~ ~1 ~ {Time:1,BlockState:{Name:redstone_block},Passengers:[
+{id:armor_stand,Health:0,Passengers:[
+{id:falling_block,Time:99,BlockState:{Name:activator_rail},Passengers:[
+{id:command_block_minecart,Command:'欢迎配合总端源NBT使用总端源第一代最终测试'},{id:command_block_minecart,Command:'作者99；2788846877'},{id:command_block_minecart,Command:'fill ~ ~1 ~ ~ ~5 ~ air'},{id:command_block_minecart,Command:'setblock ~ 3 ~ minecraft:structure_block[mode=load]{mode:"LOAD",name:"minecraft:zdycs211007"}'},{id:command_block_minecart,Command:'setblock ~ 2 ~ minecraft:redstone_block'},{id:command_block_minecart,Command:'setblock ~ ~1 ~ command_block{auto:1,Command:"fill ~ ~ ~ ~ ~-3 ~ air"}'},
+{id:command_block_minecart,Command:'kill @e[type=command_block_minecart,distance=..1]'}]}]}]}
+

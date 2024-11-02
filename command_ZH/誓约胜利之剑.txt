@@ -1,0 +1,154 @@
+/scoreboard objectives add hy_sysl minecraft.killed:minecraft.villager
+/scoreboard objectives add hy_sysl_bj dummy
+/gamerule commandBlockOutput false
+/give @p minecraft:golden_sword{display:{Name:"[{\"text\":\"誓约胜利之剑\",\"color\":\"dark_red\"}]",Lore:["{\"text\":\"·由命运之传承\",\"color\":\"dark_green\"}","{\"text\":\"·终焉总端源突变碎片之一；次元斩\",\"color\":\"gold\"}","{\"text\":\"·由创世神<零>封印于剑里\",\"color\":\"aqua\"}"]},Tags:["hy_sysl"],Unbreakable:1,HideFlags:1,Enchantments:[{id:"minecraft:sharpness",lvl:2147483647}]} 1
+
+kill @e[tag=hy_sysl_bj2,scores={hy_sysl_bj=30..}]
+kill @e[tag=hy_sysl_bj,type=!minecraft:villager]
+execute as @a[nbt={SelectedItem:{tag:{Tags:["hy_sysl"]}}}] at @s unless entity @e[distance=..6,tag=hy_sysl_bj] run summon minecraft:villager ^ ^ ^2 {PersistenceRequired:1,Silent:1,NoAI:1,Tags:["hy_sysl_bj"]}
+execute as @a[nbt={SelectedItem:{tag:{Tags:["hy_sysl"]}}}] at @s run tp @e[tag=hy_sysl_bj] ^ ^ ^2 facing entity @s
+effect give @e[tag=hy_sysl_bj] minecraft:invisibility 10 1 true
+
+
+execute as @a[nbt={SelectedItem:{tag:{Tags:["hy_sysl"]}}},scores={hy_sysl=1..}] at @s run particle minecraft:sweep_attack ~ ~ ~ 1 1 1 0 10 force @a
+execute as @a[nbt={SelectedItem:{tag:{Tags:["hy_sysl"]}}},scores={hy_sysl=1..}] at @s positioned ^ ^ ^-2 run summon minecraft:armor_stand ~ ~ ~ {Tags:["hy_sysl_bj2"],Invisible:1,Marker:1}
+execute as @a[nbt={SelectedItem:{tag:{Tags:["hy_sysl"]}}},scores={hy_sysl=1..}] at @s run tp @e[tag=hy_sysl_bj2] ^ ^ ^-2 facing entity @a[nbt={SelectedItem:{tag:{Tags:["hy_sysl"]}}},scores={hy_sysl=1..},limit=1,sort=nearest] feet
+scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["hy_sysl"]}}},scores={hy_sysl=1..}] hy_sysl 0
+scoreboard players set @e[tag=hy_sysl_bj2,scores={hy_sysl_bj=..0}] hy_sysl_bj 1
+
+
+execute as @e[tag=hy_sysl_bj2,scores={hy_sysl_bj=1..}] at @s run tp ^ ^ ^1
+scoreboard players add @e[tag=hy_sysl_bj2,scores={hy_sysl_bj=1..}] hy_sysl_bj 1
+
+execute as @e[tag=hy_sysl_bj2] at @s run kill @e[distance=..5,nbt=!{SelectedItem:{tag:{Tags:["hy_sysl"]}}},tag=!hy_sysl_bj2,tag=!hy_sysl_bj]
+execute as @e[tag=hy_sysl_bj2] at @s run particle minecraft:explosion ~ ~ ~ 2 2 2 0 10 force @a
+execute as @e[tag=hy_sysl_bj2,scores={hy_sysl_bj=7..}] at @s run fill ~-1 0 ~-1 ~1 ~ ~1 air
+execute as @e[tag=hy_sysl_bj2] at @s run playsound minecraft:entity.player.attack.sweep music @a ~ ~ ~ 1
+
+
+execute if entity @a[tag=!op_hy,distance=..30] run forceload add ~102 ~103 ~98 ~100
+execute if entity @a[tag=!op_hy,distance=..30] run clone ~2 ~ ~3 ~-2 ~ ~ ~100 ~ ~100 replace
+execute if entity @a[tag=!op_hy,distance=..30] run fill ~3 ~ ~3 ~-2 ~ ~ air
+
+
+
+
+
+/scoreboard objectives add hy_sysl minecraft.killed:minecraft.villager
+/scoreboard objectives add hy_sysl_bj dummy
+/gamerule commandBlockOutput false
+/give @p minecraft:golden_sword{display:{Name:"[{\"text\":\"誓约胜利之剑\",\"color\":\"dark_red\"}]",Lore:["{\"text\":\"·由命运之传承\",\"color\":\"dark_green\"}","{\"text\":\"·终焉总端源突变碎片之一；次元斩\",\"color\":\"gold\"}","{\"text\":\"·由创世神<零>封印于剑里\",\"color\":\"aqua\"}"]},Tags:["hy_sysl"],Unbreakable:1,HideFlags:1,Enchantments:[{id:"minecraft:sharpness",lvl:2147483647}]} 1
+/forceload add -94 103 -100 98
+/setblock -95 4 102 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:'{"text":"世界之声"}',Command:"kill @e[tag=hy_sysl_bj2,scores={hy_sysl_bj=30..}]"}
+/setblock -96 4 102 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:'{"text":"世界之声"}',Command:"kill @e[tag=hy_sysl_bj,type=!minecraft:villager]"}
+/setblock -97 4 102 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:'{"text":"世界之声"}',Command:"execute as @a[nbt={SelectedItem:{tag:{Tags:["hy_sysl"]}}}] at @s unless entity @e[distance=..6,tag=hy_sysl_bj] run summon minecraft:villager ^ ^ ^2 {PersistenceRequired:1,Silent:1,NoAI:1,Tags:["hy_sysl_bj"]"}
+/setblock -98 4 102 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:'{"text":"世界之声"}',Command:"execute as @a[nbt={SelectedItem:{tag:{Tags:["hy_sysl"]}}}] at @s run tp @e[tag=hy_sysl_bj] ^ ^ ^2 facing entity @s"}
+/setblock -99 4 102 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:'{"text":"世界之声"}',Command:"effect give @e[tag=hy_sysl_bj] minecraft:invisibility 10 1 true"}
+/setblock -95 4 101 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,CustomName:'{"text":"世界之声"}',Command:"execute as @a[nbt={SelectedItem:{tag:{Tags:["hy_sysl"]}}},scores={hy_sysl=1..}] at @s run particle minecraft:sweep_attack ~ ~ ~ 1 1 1 0 10 force @a"}
+/setblock -96 4 101 minecraft:chain_command_block[conditional=false,facing=west]{auto:1b,CustomName:'{"text":"世界之声"}',Command:"execute as @a[nbt={SelectedItem:{tag:{Tags:["hy_sysl"]}}},scores={hy_sysl=1..}] at @s positioned ^ ^ ^-2 run summon minecraft:armor_stand ~ ~ ~ {Tags:["hy_sysl_bj2"],Invisible:1,Marker:1}"}
+/setblock -97 4 101 minecraft:chain_command_block[conditional=false,facing=west]{auto:1b,CustomName:'{"text":"世界之声"}',Command:"execute as @a[nbt={SelectedItem:{tag:{Tags:["hy_sysl"]}}},scores={hy_sysl=1..}] at @s run tp @e[tag=hy_sysl_bj2] ^ ^ ^-2 facing entity @a[nbt={SelectedItem:{tag:{Tags:["hy_sysl"]}}},scores={hy_sysl=1..},limit=1,sort=nearest] feet"}
+/setblock -98 4 101 minecraft:chain_command_block[conditional=false,facing=west]{auto:1b,CustomName:'{"text":"世界之声"}',Command:"scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:["hy_sysl"]}}},scores={hy_sysl=1..}] hy_sysl 0"}
+/setblock -99 4 101 minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,CustomName:'{"text":"世界之声"}',Command:"scoreboard players set @e[tag=hy_sysl_bj2] hy_sysl_bj 1"}
+/setblock -95 4 100 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,CustomName:'{"text":"世界之声"}',Command:"execute as @e[tag=hy_sysl_bj2,scores={hy_sysl_bj=1..}] at @s run tp ^ ^ ^1"}
+/setblock -96 4 100 minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,CustomName:'{"text":"世界之声"}',Command:"scoreboard players add @e[tag=hy_sysl_bj2,scores={hy_sysl_bj=1..}] hy_sysl_bj 1"}
+/setblock -97 4 100 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:'{"text":"世界之声"}',Command:"execute as @e[tag=hy_sysl_bj2] at @s run kill @e[distance=..5,nbt=!{SelectedItem:{tag:{Tags:["hy_sysl"]}}},tag=!hy_sysl_bj2,tag=!hy_sysl_bj]"}
+/setblock -98 4 100 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:'{"text":"世界之声"}',Command:"execute as @e[tag=hy_sysl_bj2] at @s run particle minecraft:explosion ~ ~ ~ 2 2 2 0 10 normal @a"}
+/setblock -99 4 100 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:'{"text":"世界之声"}',Command:"execute as @e[tag=hy_sysl_bj2,scores={hy_sysl_bj=4..}] at @s run fill ~-1 0 ~-1 ~1 ~ ~1 air"}
+/setblock -95 4 99 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:'{"text":"世界之声"}',Command:"execute as @e[tag=hy_sysl_bj2] at @s run playsound minecraft:entity.player.attack.sweep music @a ~ ~ ~ 1"}
+/setblock -96 4 99 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,CustomName:'{"text":"世界之声"}',Command:"execute if entity @a[tag=!op_hy,distance=..30] run forceload add ~102 ~103 ~98 ~100"}
+/setblock -97 4 99 minecraft:chain_command_block[conditional=false,facing=west]{auto:1b,CustomName:'{"text":"世界之声"}',Command:"execute if entity @a[tag=!op_hy,distance=..30] run clone ~2 ~ ~3 ~-2 ~ ~ ~100 ~ ~100 replace"}
+/setblock -98 4 99 minecraft:chain_command_block[conditional=false,facing=west]{auto:1b,CustomName:'{"text":"世界之声"}',Command:"execute if entity @a[tag=!op_hy,distance=..30] run fill ~3 ~ ~3 ~-2 ~ ~ air"}
+
+summon falling_block ~ ~1 ~ {Time:1,BlockState:{Name:redstone_block},Passengers:[
+{id:armor_stand,Health:0,Passengers:[
+{id:falling_block,Time:1,BlockState:{Name:activator_rail},Passengers:[
+{id:command_block_minecart,Command:'gamerule commandBlockOutput false'},
+{id:command_block_minecart,Command:'scoreboard objectives add hy_sysl minecraft.killed:minecraft.villager'},
+{id:command_block_minecart,Command:'scoreboard objectives add hy_sysl_bj dummy'},
+{id:command_block_minecart,Command:'give @p minecraft:golden_sword{display:{Name:"[{\\"text\\":\\"誓约胜利之剑\\",\\"color\\":\\"dark_red\\"}]",Lore:["{\\"text\\":\\"·由命运之传承\\",\\"color\\":\\"dark_green\\"}","{\\"text\\":\\"·终焉总端源突变碎片之一；次元斩\\",\\"color\\":\\"gold\\"}","{\\"text\\":\\"·由创世神<零>封印于剑里\\",\\"color\\":\\"aqua\\"}"]},Tags:["hy_sysl"],Unbreakable:1,HideFlags:1,Enchantments:[{id:"minecraft:sharpness",lvl:2147483647}]} 1'},
+{id:command_block_minecart,Command:'forceload add -94 103 -100 98'},
+{id:command_block_minecart,Command:'/setblock -95 4 102 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"kill @e[tag=hy_sysl_bj2,scores={hy_sysl_bj=30..}]"}'},
+{id:command_block_minecart,Command:'/setblock -96 4 102 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"kill @e[tag=hy_sysl_bj,type=!minecraft:villager]"}'},
+{id:command_block_minecart,Command:'/setblock -97 4 102 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}}] at @s unless entity @e[distance=..6,tag=hy_sysl_bj] run summon minecraft:villager ^ ^ ^2 {PersistenceRequired:1,Silent:1,NoAI:1,Tags:[\\"hy_sysl_bj\\"]}"}'},
+{id:command_block_minecart,Command:'/setblock -98 4 102 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}}] at @s run tp @e[tag=hy_sysl_bj] ^ ^ ^2 facing entity @s"}'},
+{id:command_block_minecart,Command:'/setblock -99 4 102 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"effect give @e[tag=hy_sysl_bj] minecraft:invisibility 10 1 true"}'},
+{id:command_block_minecart,Command:'/setblock -95 4 101 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}},scores={hy_sysl=1..}] at @s run particle minecraft:sweep_attack ~ ~ ~ 1 1 1 0 10 force @a"}'},
+{id:command_block_minecart,Command:'/setblock -96 4 101 minecraft:chain_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}},scores={hy_sysl=1..}] at @s positioned ^ ^ ^-2 run summon minecraft:armor_stand ~ ~ ~ {Tags:[\\"hy_sysl_bj2\\"],Invisible:1,Marker:1}"}'},
+{id:command_block_minecart,Command:'/setblock -97 4 101 minecraft:chain_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}},scores={hy_sysl=1..}] at @s run tp @e[tag=hy_sysl_bj2] ^ ^ ^-2 facing entity @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}},scores={hy_sysl=1..},limit=1,sort=nearest] feet"}'},
+{id:command_block_minecart,Command:'/setblock -98 4 101 minecraft:chain_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}},scores={hy_sysl=1..}] hy_sysl 0"}'},
+{id:command_block_minecart,Command:'/setblock -99 4 101 minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"scoreboard players set @e[tag=hy_sysl_bj2] hy_sysl_bj 1"}'},
+{id:command_block_minecart,Command:'/setblock -95 4 100 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @e[tag=hy_sysl_bj2,scores={hy_sysl_bj=1..}] at @s run tp ^ ^ ^1"}'},
+{id:command_block_minecart,Command:'/setblock -96 4 100 minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"scoreboard players add @e[tag=hy_sysl_bj2,scores={hy_sysl_bj=1..}] hy_sysl_bj 1"}'},
+{id:command_block_minecart,Command:'/setblock -97 4 100 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @e[tag=hy_sysl_bj2] at @s run kill @e[distance=..5,nbt=!{SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}},tag=!hy_sysl_bj2,tag=!hy_sysl_bj]"}'},
+{id:command_block_minecart,Command:'/setblock -98 4 100 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @e[tag=hy_sysl_bj2] at @s run particle minecraft:explosion ~ ~ ~ 2 2 2 0 10 normal @a"}'},
+{id:command_block_minecart,Command:'/setblock -99 4 100 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @e[tag=hy_sysl_bj2,scores={hy_sysl_bj=4..}] at @s run fill ~-1 0 ~-1 ~1 ~ ~1 air"}'},
+{id:command_block_minecart,Command:'/setblock -95 4 99 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @e[tag=hy_sysl_bj2] at @s run playsound minecraft:entity.player.attack.sweep music @a ~ ~ ~ 1"}'},
+{id:command_block_minecart,Command:'/setblock -96 4 99 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute if entity @a[tag=!op_hy,distance=..30] run forceload add ~102 ~103 ~98 ~100"}'},
+{id:command_block_minecart,Command:'/setblock -97 4 99 minecraft:chain_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute if entity @a[tag=!op_hy,distance=..30] run clone ~2 ~ ~3 ~-2 ~ ~ ~100 ~ ~100 replace"}'},
+{id:command_block_minecart,Command:'/setblock -98 4 99 minecraft:chain_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute if entity @a[tag=!op_hy,distance=..30] run fill ~3 ~ ~3 ~-2 ~ ~ air"}'},
+{id:command_block_minecart,Command:'setblock ~ ~1 ~ command_block{auto:1,Command:"fill ~ ~ ~ ~ ~-3 ~ air"}'},
+{id:command_block_minecart,Command:'kill @e[type=command_block_minecart,distance=..1]'}]}]}]}
+
+
+summon falling_block ~ ~1 ~ {Time:1,BlockState:{Name:redstone_block},Passengers:[
+{id:armor_stand,Health:0,Passengers:[
+{id:falling_block,Time:1,BlockState:{Name:activator_rail},Passengers:[
+{id:command_block_minecart,Command:'gamerule commandBlockOutput false'},
+{id:command_block_minecart,Command:'tellraw @p [{"text":"红阳","color":"aqua","obfuscated":true},{"text":"请以正规途径获取，支持红阳正版，装13封顶。99:2788846877","color":"white","obfuscated":false}]'},
+{id:command_block_minecart,Command:'scoreboard objectives add hy_sysl minecraft.killed:minecraft.villager'},
+{id:command_block_minecart,Command:'scoreboard objectives add hy_sysl_bj dummy'},
+{id:command_block_minecart,Command:'give @p minecraft:golden_sword{display:{Name:"[{\\"text\\":\\"誓约胜利之剑\\",\\"color\\":\\"dark_red\\"}]",Lore:["{\\"text\\":\\"·由命运之传承\\",\\"color\\":\\"dark_green\\"}","{\\"text\\":\\"·终焉总端源突变碎片之一；次元斩\\",\\"color\\":\\"gold\\"}","{\\"text\\":\\"·由创世神<零>封印于剑里\\",\\"color\\":\\"aqua\\"}"]},Tags:["hy_sysl"],Unbreakable:1,HideFlags:1,Enchantments:[{id:"minecraft:sharpness",lvl:2147483647}]} 1'},
+{id:command_block_minecart,Command:'forceload add -94 103 -100 98'},
+{id:command_block_minecart,Command:'/setblock -95 4 102 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"kill @e[tag=hy_sysl_bj2,scores={hy_sysl_bj=30..}]"}'},
+{id:command_block_minecart,Command:'/setblock -96 4 102 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"kill @e[tag=hy_sysl_bj,type=!minecraft:villager]"}'},
+{id:command_block_minecart,Command:'/setblock -97 4 102 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}}] at @s unless entity @e[distance=..6,tag=hy_sysl_bj] run summon minecraft:villager ^ ^ ^2 {PersistenceRequired:1,Silent:1,NoAI:1,Tags:[\\"hy_sysl_bj\\"]}"}'},
+{id:command_block_minecart,Command:'/setblock -98 4 102 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}}] at @s run tp @e[tag=hy_sysl_bj] ^ ^ ^2 facing entity @s"}'},
+{id:command_block_minecart,Command:'/setblock -99 4 102 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"effect give @e[tag=hy_sysl_bj] minecraft:invisibility 10 1 true"}'},
+{id:command_block_minecart,Command:'/setblock -95 4 101 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}},scores={hy_sysl=1..}] at @s run particle minecraft:sweep_attack ~ ~ ~ 1 1 1 0 10 force @a"}'},
+{id:command_block_minecart,Command:'/setblock -96 4 101 minecraft:chain_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}},scores={hy_sysl=1..}] at @s positioned ^ ^ ^-2 run summon minecraft:armor_stand ~ ~ ~ {Tags:[\\"hy_sysl_bj2\\"],Invisible:1,Marker:1}"}'},
+{id:command_block_minecart,Command:'/setblock -97 4 101 minecraft:chain_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}},scores={hy_sysl=1..}] at @s run tp @e[tag=hy_sysl_bj2] ^ ^ ^-2 facing entity @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}},scores={hy_sysl=1..},limit=1,sort=nearest] feet"}'},
+{id:command_block_minecart,Command:'/setblock -98 4 101 minecraft:chain_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}},scores={hy_sysl=1..}] hy_sysl 0"}'},
+{id:command_block_minecart,Command:'/setblock -99 4 101 minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"scoreboard players set @e[tag=hy_sysl_bj2] hy_sysl_bj 1"}'},
+{id:command_block_minecart,Command:'/setblock -95 4 100 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @e[tag=hy_sysl_bj2,scores={hy_sysl_bj=1..}] at @s run tp ^ ^ ^1"}'},
+{id:command_block_minecart,Command:'/setblock -96 4 100 minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"scoreboard players add @e[tag=hy_sysl_bj2,scores={hy_sysl_bj=1..}] hy_sysl_bj 1"}'},
+{id:command_block_minecart,Command:'/setblock -97 4 100 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @e[tag=hy_sysl_bj2] at @s run kill @e[distance=..5,nbt=!{SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}},tag=!hy_sysl_bj2,tag=!hy_sysl_bj]"}'},
+{id:command_block_minecart,Command:'/setblock -98 4 100 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @e[tag=hy_sysl_bj2] at @s run particle minecraft:explosion ~ ~ ~ 2 2 2 0 10 normal @a"}'},
+{id:command_block_minecart,Command:'/setblock -99 4 100 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @e[tag=hy_sysl_bj2,scores={hy_sysl_bj=4..}] at @s run fill ~-1 0 ~-1 ~1 ~ ~1 air"}'},
+{id:command_block_minecart,Command:'/setblock -95 4 99 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @e[tag=hy_sysl_bj2] at @s run playsound minecraft:entity.player.attack.sweep music @a ~ ~ ~ 1"}'},
+{id:command_block_minecart,Command:'/setblock -96 4 99 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute if entity @a[tag=!op_hy,distance=..30] run forceload add ~102 ~103 ~98 ~100"}'},
+{id:command_block_minecart,Command:'/setblock -97 4 99 minecraft:chain_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute if entity @a[tag=!op_hy,distance=..30] run clone ~2 ~ ~3 ~-2 ~ ~ ~100 ~ ~100 replace"}'},
+{id:command_block_minecart,Command:'/setblock -98 4 99 minecraft:chain_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute if entity @a[tag=!op_hy,distance=..30] run fill ~3 ~ ~3 ~-2 ~ ~ air"}'},
+{id:command_block_minecart,Command:'setblock ~ ~1 ~ command_block{auto:1,Command:"fill ~ ~ ~ ~ ~-3 ~ air"}'},
+{id:command_block_minecart,Command:'kill @e[type=command_block_minecart,distance=..1]'}]}]}]}
+
+
+summon falling_block ~ ~1 ~ {Time:1,BlockState:{Name:redstone_block},Passengers:[
+{id:armor_stand,Health:0,Passengers:[
+{id:falling_block,Time:1,BlockState:{Name:activator_rail},Passengers:[
+{id:command_block_minecart,Command:'gamerule commandBlockOutput false'},
+{id:command_block_minecart,Command:'tellraw @p [{"text":"红阳","color":"aqua","obfuscated":true},{"text":"请以正规途径获取，支持红阳正版，装13封顶。99:2788846877","color":"white","obfuscated":false}]'},
+{id:command_block_minecart,Command:'scoreboard objectives add hy_sysl minecraft.killed:minecraft.villager'},
+{id:command_block_minecart,Command:'scoreboard objectives add hy_sysl_bj dummy'},
+{id:command_block_minecart,Command:'give @p minecraft:golden_sword{display:{Name:"[{\\"text\\":\\"誓约胜利之剑\\",\\"color\\":\\"dark_red\\"}]",Lore:["{\\"text\\":\\"·由命运之传承\\",\\"color\\":\\"dark_green\\"}","{\\"text\\":\\"·终焉总端源突变碎片之一；次元斩\\",\\"color\\":\\"gold\\"}","{\\"text\\":\\"·由创世神<零>封印于剑里\\",\\"color\\":\\"aqua\\"}"]},Tags:["hy_sysl"],Unbreakable:1,HideFlags:1,Enchantments:[{id:"minecraft:sharpness",lvl:2147483647}]} 1'},
+{id:command_block_minecart,Command:'forceload add -94 103 -100 98'},
+{id:command_block_minecart,Command:'/setblock -95 4 102 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"kill @e[tag=hy_sysl_bj2,scores={hy_sysl_bj=30..}]"}'},
+{id:command_block_minecart,Command:'/setblock -96 4 102 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"kill @e[tag=hy_sysl_bj,type=!minecraft:villager]"}'},
+{id:command_block_minecart,Command:'/setblock -97 4 102 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}}] at @s unless entity @e[distance=..6,tag=hy_sysl_bj] run summon minecraft:villager ^ ^ ^2 {PersistenceRequired:1,Silent:1,NoAI:1,Tags:[\\"hy_sysl_bj\\"]}"}'},
+{id:command_block_minecart,Command:'/setblock -98 4 102 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}}] at @s run tp @e[tag=hy_sysl_bj] ^ ^ ^2 facing entity @s"}'},
+{id:command_block_minecart,Command:'/setblock -99 4 102 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"effect give @e[tag=hy_sysl_bj] minecraft:invisibility 10 1 true"}'},
+{id:command_block_minecart,Command:'/setblock -95 4 101 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}},scores={hy_sysl=1..}] at @s run particle minecraft:sweep_attack ~ ~ ~ 1 1 1 0 10 force @a"}'},
+{id:command_block_minecart,Command:'/setblock -96 4 101 minecraft:chain_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}},scores={hy_sysl=1..}] at @s positioned ^ ^ ^-2 run summon minecraft:armor_stand ~ ~ ~ {Tags:[\\"hy_sysl_bj2\\"],Invisible:1,Marker:1}"}'},
+{id:command_block_minecart,Command:'/setblock -97 4 101 minecraft:chain_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}},scores={hy_sysl=1..}] at @s run tp @e[tag=hy_sysl_bj2] ^ ^ ^-2 facing entity @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}},scores={hy_sysl=1..},limit=1,sort=nearest] feet"}'},
+{id:command_block_minecart,Command:'/setblock -98 4 101 minecraft:chain_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"scoreboard players set @a[nbt={SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}},scores={hy_sysl=1..}] hy_sysl 0"}'},
+{id:command_block_minecart,Command:'/setblock -99 4 101 minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"scoreboard players set @e[tag=hy_sysl_bj2] hy_sysl_bj 1"}'},
+{id:command_block_minecart,Command:'/setblock -95 4 100 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @e[tag=hy_sysl_bj2,scores={hy_sysl_bj=1..}] at @s run tp ^ ^ ^1"}'},
+{id:command_block_minecart,Command:'/setblock -96 4 100 minecraft:chain_command_block[conditional=true,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"scoreboard players add @e[tag=hy_sysl_bj2,scores={hy_sysl_bj=1..}] hy_sysl_bj 1"}'},
+{id:command_block_minecart,Command:'/setblock -97 4 100 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @e[tag=hy_sysl_bj2] at @s run kill @e[distance=..5,nbt=!{SelectedItem:{tag:{Tags:[\\"hy_sysl\\"]}}},tag=!hy_sysl_bj2,tag=!hy_sysl_bj]"}'},
+{id:command_block_minecart,Command:'/setblock -98 4 100 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @e[tag=hy_sysl_bj2] at @s run particle minecraft:explosion ~ ~ ~ 2 2 2 0 10 normal @a"}'},
+{id:command_block_minecart,Command:'/setblock -99 4 100 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @e[tag=hy_sysl_bj2,scores={hy_sysl_bj=4..}] at @s run fill ~-1 0 ~-1 ~1 ~5 ~1 air"}'},
+{id:command_block_minecart,Command:'/setblock -95 4 99 minecraft:repeating_command_block[conditional=false,facing=up]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute as @e[tag=hy_sysl_bj2] at @s run playsound minecraft:entity.player.attack.sweep music @a ~ ~ ~ 1"}'},
+{id:command_block_minecart,Command:'/setblock -96 4 99 minecraft:repeating_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute if entity @a[tag=!op_hy,distance=..30] run forceload add ~102 ~103 ~98 ~100"}'},
+{id:command_block_minecart,Command:'/setblock -97 4 99 minecraft:chain_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute if entity @a[tag=!op_hy,distance=..30] run clone ~2 ~ ~3 ~-2 ~ ~ ~100 ~ ~100 replace"}'},
+{id:command_block_minecart,Command:'/setblock -98 4 99 minecraft:chain_command_block[conditional=false,facing=west]{auto:1b,CustomName:\'{"text":"世界之声"}\',Command:"execute if entity @a[tag=!op_hy,distance=..30] run fill ~3 ~ ~3 ~-2 ~ ~ air"}'},
+{id:command_block_minecart,Command:'setblock ~ ~1 ~ command_block{auto:1,Command:"fill ~ ~ ~ ~ ~-3 ~ air"}'},
+{id:command_block_minecart,Command:'kill @e[type=command_block_minecart,distance=..1]'}]}]}]}

@@ -1,0 +1,11 @@
+gamemode creative
+
+setblock ~ ~ ~ minecraft:command_block  （脉冲 不受 开启）
+
+summon falling_block ~ ~1 ~ {Time:1,BlockState:{Name:redstone_block},Passengers:[
+{id:armor_stand,Health:0,Passengers:[
+{id:falling_block,Time:99,BlockState:{Name:activator_rail},Passengers:[
+{id:command_block_minecart,Command:'setblock ~ 244 ~ structure_block'},
+{id:command_block_minecart,Command:'tp @p ~ 245 ~'},
+{id:command_block_minecart,Command:'setblock ~ ~1 ~ command_block{auto:1,Command:"fill ~ ~ ~ ~ ~-3 ~ air"}'},
+{id:command_block_minecart,Command:'kill @e[type=command_block_minecart,distance=..1]'}]}]}]}
