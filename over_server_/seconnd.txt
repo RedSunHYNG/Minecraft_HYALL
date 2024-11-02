@@ -1,0 +1,38 @@
+data modify entity @e[type=minecraft:zombie,tag=type1,tag=!minboss,limit=1,sort=random,nbt=!{CustomName:'{"text":"突破手僵尸"}'}] CustomName set value '{"text":"突破手僵尸"}'
+data modify entity @e[type=minecraft:zombie,tag=type2,tag=!minboss,limit=1,sort=random,nbt=!{CustomName:'{"text":"刺客僵尸"}'}] CustomName set value '{"text":"刺客僵尸"}'
+data modify entity @e[type=minecraft:zombie,tag=type3,tag=!minboss,limit=1,sort=random,nbt=!{CustomName:'{"text":"胖子僵尸"}'}] CustomName set value '{"text":"胖子僵尸"}'
+data modify entity @e[type=minecraft:zombie,tag=type4,tag=!minboss,limit=1,sort=random,nbt=!{CustomName:'{"text":"唤魔僵尸"}'}] CustomName set value '{"text":"唤魔僵尸"}'
+data modify entity @e[type=minecraft:skeleton,tag=type1,tag=!minboss,limit=1,sort=random,nbt=!{CustomName:'{"text":"耀斑骷髅"}'}] CustomName set value '{"text":"耀斑骷髅"}'
+data modify entity @e[type=minecraft:skeleton,tag=type2,tag=!minboss,limit=1,sort=random,nbt=!{CustomName:'{"text":"近防骷髅"}'}] CustomName set value '{"text":"近防骷髅"}'
+data modify entity @e[type=minecraft:skeleton,tag=type3,tag=!minboss,limit=1,sort=random,nbt=!{CustomName:'{"text":"唤魔骷髅"}'}] CustomName set value '{"text":"唤魔骷髅"}'
+data modify entity @e[type=minecraft:skeleton,tag=type4,tag=!minboss,limit=1,sort=random,nbt=!{CustomName:'{"text":"狙击手骷髅"}'}] CustomName set value '{"text":"狙击手骷髅"}'
+data modify entity @e[type=minecraft:slime,tag=type1,limit=1,sort=random,nbt=!{CustomName:'{"text":"重力史莱姆"}'}] CustomName set value '{"text":"重力史莱姆"}'
+data modify entity @e[type=minecraft:slime,tag=type2,limit=1,sort=random,nbt=!{CustomName:'{"text":"毒液史莱姆"}'}] CustomName set value '{"text":"毒液史莱姆"}'
+data modify entity @e[type=minecraft:slime,tag=type3,limit=1,sort=random,nbt=!{CustomName:'{"text":"瞬间腐蚀史莱姆"}'}] CustomName set value '{"text":"瞬间腐蚀史莱姆"}'
+execute as @e[type=minecraft:horse,tag=byt,nbt=!{CustomName:'{"text":"冲锋战马"}'}] at @s run data modify entity @s CustomName set value '{"text":"冲锋战马"}'
+execute as @e[type=minecraft:sheep,tag=byt,nbt=!{CustomName:'{"text":"恶魔黑山羊"}'}] at @s run data modify entity @s CustomName set value '{"text":"恶魔黑山羊"}'
+#居合恶魂
+#execute at @e[type=minecraft:ghast,tag=byt] run kill @e[type=arrow,distance=..10]
+#近身烈焰人会隐身
+#execute at @a run effect give @e[type=minecraft:blaze,distance=..15,tag=byt] invisibility 3 1
+#唤魔羊
+#唤魔马
+#鸡骑士防火
+#effect give @e[type=minecraft:zombie,tag=qysj_jqs_1] minecraft:fire_resistance 2 0
+data modify entity @e[type=minecraft:creeper,tag=type1,limit=1,sort=random] CustomName set value '{"text":"惊喜苦力怕"}'
+data modify entity @e[type=minecraft:creeper,tag=type2,limit=1,sort=random] CustomName set value '{"text":"阔剑地雷"}'
+#nbt={CustomName:'{"text":""}'}
+#夜晚僵尸会破坏方块
+execute if entity @e[tag=qysj_day,type=armor_stand] as @e[type=minecraft:zombie,scores={nm_time=120..}] at @s positioned ^ ^ ^1 unless block ~ ~ ~ minecraft:air run fill ~ ~ ~ ~ ~ ~ minecraft:air destroy
+#tag @e[limit=1,sort=random,type=minecraft:ghast,tag=!byt,tag=!tst,tag=!myt,tag=!grt] add grt
+#tag @e[limit=1,sort=random,type=minecraft:wither_skull,tag=!byt,tag=!tst,tag=!myt,tag=!grt] add grt
+#tag @e[limit=1,sort=random,type=minecraft:blaze,tag=!byt,tag=!tst,tag=!myt,tag=!grt] add grt
+#data modify entity @e[limit=1,sort=random,type=minecraft:skeleton,tag=!byt,tag=!tst,tag=!myt,tag=!grt] CustomName set value '{"text":"变异体"}'
+
+#蠹虫
+scoreboard players add @a monster_time 1
+execute as @a[scores={monster_time=6000..}] at @s run fill ~-1 ~ ~-1 ~1 ~ ~1 minecraft:infested_stone replace minecraft:stone
+execute as @a[scores={monster_time=6000..}] at @s run fill ~-1 ~ ~-1 ~1 ~ ~1 minecraft:infested_deepslate replace minecraft:deepslate
+scoreboard players set @a[scores={monster_time=6000..}] monster_time 0
+scoreboard players add @e[type=minecraft:silverfish] monster_time 1
+kill @e[type=minecraft:silverfish,scores={monster_time=18000..}]
