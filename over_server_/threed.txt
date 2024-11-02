@@ -1,8 +1,0 @@
- {abilities:{invulnerable}}
-
-
- LastDeathLocation：玩家上次死亡的地点。
- dimension：死亡地点的维度的命名空间ID。
- pos：死亡地点的坐标，用三个int代表XYZ坐标。
-
- recipe give @s *
